@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Muncitor - Ohrim Construct</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏗️ OHRIM</h2>
+                <p id="workerName">Muncitor</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="overview">
+                    <span>📊</span> Prezentare Generală
+                </a>
+                <a href="#" class="nav-item" data-section="timesheet">
+                    <span>⏰</span> Pontaj & Ore
+                </a>
+                <a href="#" class="nav-item" data-section="location">
+                    <span>📍</span> Locație Șantier
+                </a>
+                <a href="#" class="nav-item" data-section="documents">
+                    <span>📄</span> Documente
+                </a>
+                <a href="#" class="nav-item" data-section="tasks">
+                    <span>✅</span> Sarcini Zilnice
+                </a>
+                <a href="#" class="nav-item" data-section="equipment">
+                    <span>🔧</span> Echipamente
+                </a>
+                <a href="#" class="nav-item" data-section="requests">
+                    <span>📝</span> Cereri & Concedii
+                </a>
+                <a href="#" class="nav-item" data-section="salary">
+                    <span>💰</span> Salarii & Bonusuri
+                </a>
+            </nav>
+            
+            <button class="btn-logout" onclick="logout()">🚪 Deconectare</button>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1 id="sectionTitle">Prezentare Generală</h1>
+                <div class="header-info">
+                    <span id="currentDate"></span>
+                    <span id="currentTime"></span>
+                </div>
+            </header>
+            
+            <!-- Overview Section -->
+            <section id="overview" class="content-section active">
+                <div class="cards-grid">
+                    <div class="info-card">
+                        <h3>⏰ Ore Luna Curentă</h3>
+                        <p class="big-number">168</p>
+                        <small>ore lucrate</small>
+                    </div>
+                    <div class="info-card">
+                        <h3>📍 Șantier Actual</h3>
+                        <p class="big-text">Bloc Rezidențial A3</p>
+                        <small>Str. Constructorilor 45</small>
+                    </div>
+                    <div class="info-card">
+                        <h3>✅ Sarcini Astăzi</h3>
+                        <p class="big-number">3/5</p>
+                        <small>completate</small>
+                    </div>
+                    <div class="info-card">
+                        <h3>💰 Salariu Estimat</h3>
+                        <p class="big-number">4,200 MDL</p>
+                        <small>luna curentă</small>
+                    </div>
+                </div>
+                
+                <div class="recent-activity">
+                    <h3>📋 Activitate Recentă</h3>
+                    <ul class="activity-list">
+                        <li>✅ Pontaj intrare: 08:00 AM</li>
+                        <li>🔧 Primit echipament: Sfredel electric</li>
+                        <li>✅ Finalizat: Montare cadre ferestre etaj 2</li>
+                        <li>📝 Cerere concediu aprobată: 15-20 Ian 2026</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Timesheet Section -->
+            <section id="timesheet" class="content-section">
+                <div class="timesheet-controls">
+                    <button class="btn-primary" onclick="clockIn()">⏰ Pontaj Intrare</button>
+                    <button class="btn-secondary" onclick="clockOut()">🏁 Pontaj Ieșire</button>
+                    <button class="btn-secondary" onclick="addBreak()">☕ Pauză</button>
+                </div>
+                
+                <div class="current-shift">
+                    <h3>Tura Curentă</h3>
+                    <p>Intrare: <strong id="clockInTime">08:00</strong></p>
+                    <p>Timp lucrat: <strong id="hoursWorked">6h 30m</strong></p>
+                    <p>Status: <span class="status-badge active">🟢 Activ</span></p>
+                </div>
+                
+                <div class="timesheet-table">
+                    <h3>📅 Pontaj Lunar</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Intrare</th>
+                                <th>Ieșire</th>
+                                <th>Total Ore</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>27 Dec 2025</td>
+                                <td>08:00</td>
+                                <td>-</td>
+                                <td>6.5h</td>
+                                <td><span class="status-badge active">Lucru</span></td>
+                            </tr>
+                            <tr>
+                                <td>26 Dec 2025</td>
+                                <td>08:00</td>
+                                <td>17:00</td>
+                                <td>8h</td>
+                                <td><span class="status-badge completed">Complet</span></td>
+                            </tr>
+                            <tr>
+                                <td>25 Dec 2025</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td><span class="status-badge holiday">Sărbătoare</span></td>
+                            </tr>
+                            <tr>
+                                <td>24 Dec 2025</td>
+                                <td>08:00</td>
+                                <td>16:00</td>
+                                <td>7h</td>
+                                <td><span class="status-badge completed">Complet</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <!-- Location Section -->
+            <section id="location" class="content-section">
+                <div class="location-info">
+                    <h3>📍 Șantier Actual</h3>
+                    <div class="location-card">
+                        <h4>Bloc Rezidențial A3</h4>
+                        <p>📍 Str. Constructorilor 45, Chișinău</p>
+                        <p>👷 Șef șantier: Ion Popescu</p>
+                        <p>📞 Tel: +373 69 123 456</p>
+                        <p>⏰ Program: 08:00 - 17:00</p>
+                        <button class="btn-primary">🗺️ Deschide în Maps</button>
+                    </div>
+                </div>
+                
+                <div class="location-history">
+                    <h3>📋 Istoric Șantiere</h3>
+                    <ul class="location-list">
+                        <li>
+                            <strong>Bloc Rezidențial A3</strong>
+                            <span>01 Dec - Prezent</span>
+                        </li>
+                        <li>
+                            <strong>Casă Individuală Durlești</strong>
+                            <span>15 Nov - 30 Nov 2025</span>
+                        </li>
+                        <li>
+                            <strong>Renovare Bloc B5</strong>
+                            <span>01 Oct - 14 Nov 2025</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Documents Section -->
+            <section id="documents" class="content-section">
+                <h3>📄 Documentele Mele</h3>
+                <div class="documents-grid">
+                    <div class="document-card">
+                        <div class="doc-icon">📋</div>
+                        <h4>Contract de Muncă</h4>
+                        <p>contract_2024.pdf</p>
+                        <button class="btn-small">📥 Descarcă</button>
+                    </div>
+                    <div class="document-card">
+                        <div class="doc-icon">🆔</div>
+                        <h4>Buletin Identitate</h4>
+                        <p>buletin_copie.pdf</p>
+                        <button class="btn-small">📥 Descarcă</button>
+                    </div>
+                    <div class="document-card">
+                        <div class="doc-icon">🏥</div>
+                        <h4>Certificat Medical</h4>
+                        <p>medical_2025.pdf</p>
+                        <button class="btn-small">📥 Descarcă</button>
+                    </div>
+                    <div class="document-card">
+                        <div class="doc-icon">🎓</div>
+                        <h4>Certificate Calificare</h4>
+                        <p>calificare_sudor.pdf</p>
+                        <button class="btn-small">📥 Descarcă</button>
+                    </div>
+                    <div class="document-card">
+                        <div class="doc-icon">💰</div>
+                        <h4>Fluturaș Salariu</h4>
+                        <p>salariu_nov_2025.pdf</p>
+                        <button class="btn-small">📥 Descarcă</button>
+                    </div>
+                    <div class="document-card upload">
+                        <div class="doc-icon">➕</div>
+                        <h4>Încarcă Document</h4>
+                        <button class="btn-small">📤 Upload</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Tasks Section -->
+            <section id="tasks" class="content-section">
+                <h3>✅ Sarcini Zilnice</h3>
+                <div class="tasks-list">
+                    <div class="task-item completed">
+                        <input type="checkbox" checked>
+                        <div class="task-info">
+                            <h4>Montare cadre ferestre etaj 2</h4>
+                            <p>Prioritate: Înaltă | Deadline: 27 Dec 14:00</p>
+                        </div>
+                        <span class="task-status">✅ Complet</span>
+                    </div>
+                    <div class="task-item completed">
+                        <input type="checkbox" checked>
+                        <div class="task-info">
+                            <h4>Verificare materiale construcție</h4>
+                            <p>Prioritate: Medie | Deadline: 27 Dec 10:00</p>
+                        </div>
+                        <span class="task-status">✅ Complet</span>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox">
+                        <div class="task-info">
+                            <h4>Aplicare tencuială perete exterior</h4>
+                            <p>Prioritate: Înaltă | Deadline: 27 Dec 16:00</p>
+                        </div>
+                        <span class="task-status">⏳ În lucru</span>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox">
+                        <div class="task-info">
+                            <h4>Curățenie zonă de lucru</h4>
+                            <p>Prioritate: Medie | Deadline: 27 Dec 17:00</p>
+                        </div>
+                        <span class="task-status">🔜 Planificat</span>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox">
+                        <div class="task-info">
+                            <h4>Predare echipamente la depozit</h4>
+                            <p>Prioritate: Scăzută | Deadline: 27 Dec 17:00</p>
+                        </div>
+                        <span class="task-status">🔜 Planificat</span>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Equipment Section -->
+            <section id="equipment" class="content-section">
+                <h3>🔧 Echipamente Primite</h3>
+                <div class="equipment-list">
+                    <div class="equipment-item">
+                        <div class="eq-icon">🔨</div>
+                        <div class="eq-info">
+                            <h4>Ciocan Pneumatic</h4>
+                            <p>ID: EQ-2301 | Data primirii: 01 Dec 2025</p>
+                            <span class="eq-status active">🟢 În uz</span>
+                        </div>
+                        <button class="btn-small">📋 Raportează</button>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="eq-icon">🔧</div>
+                        <h4>Sfredel Electric</h4>
+                        <p>ID: EQ-2315 | Data primirii: 26 Dec 2025</p>
+                        <span class="eq-status active">🟢 În uz</span>
+                        <button class="btn-small">📋 Raportează</button>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="eq-icon">🦺</div>
+                        <div class="eq-info">
+                            <h4>Vestă de Protecție</h4>
+                            <p>ID: EQ-2401 | Data primirii: 01 Dec 2025</p>
+                            <span class="eq-status active">🟢 În uz</span>
+                        </div>
+                        <button class="btn-small">📋 Raportează</button>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="eq-icon">👷</div>
+                        <div class="eq-info">
+                            <h4>Cască de Protecție</h4>
+                            <p>ID: EQ-2405 | Data primirii: 01 Dec 2025</p>
+                            <span class="eq-status active">🟢 În uz</span>
+                        </div>
+                        <button class="btn-small">📋 Raportează</button>
+                    </div>
+                </div>
+                
+                <div class="equipment-actions">
+                    <button class="btn-primary">🔧 Solicitare Echipament Nou</button>
+                    <button class="btn-secondary">⚠️ Raportare Defecțiune</button>
+                    <button class="btn-secondary">↩️ Returnare Echipament</button>
+                </div>
+            </section>
+            
+            <!-- Requests Section -->
+            <section id="requests" class="content-section">
+                <h3>📝 Cereri & Concedii</h3>
+                <button class="btn-primary" onclick="openRequestForm()">➕ Cerere Nouă</button>
+                
+                <div class="requests-list">
+                    <div class="request-item approved">
+                        <h4>Concediu de Odihnă</h4>
+                        <p>Perioada: 15-20 Ian 2026 (5 zile)</p>
+                        <p>Status: <span class="status-badge approved">✅ Aprobat</span></p>
+                        <small>Trimis: 20 Dec 2025</small>
+                    </div>
+                    <div class="request-item pending">
+                        <h4>Cerere Avans Salarial</h4>
+                        <p>Sumă: 1000 MDL</p>
+                        <p>Status: <span class="status-badge pending">⏳ În așteptare</span></p>
+                        <small>Trimis: 26 Dec 2025</small>
+                    </div>
+                    <div class="request-item approved">
+                        <h4>Concediu Medical</h4>
+                        <p>Perioada: 10-12 Dec 2025 (2 zile)</p>
+                        <p>Status: <span class="status-badge approved">✅ Aprobat</span></p>
+                        <small>Trimis: 09 Dec 2025</small>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Salary Section -->
+            <section id="salary" class="content-section">
+                <h3>💰 Salarii & Bonusuri</h3>
+                <div class="salary-overview">
+                    <div class="salary-card">
+                        <h4>Salariu Luna Curentă</h4>
+                        <p class="salary-amount">4,200 MDL</p>
+                        <small>168 ore × 25 MDL/oră</small>
+                    </div>
+                    <div class="salary-card">
+                        <h4>Bonusuri Luna Curentă</h4>
+                        <p class="salary-amount">500 MDL</p>
+                        <small>Bonus performanță</small>
+                    </div>
+                    <div class="salary-card">
+                        <h4>Total Estimat</h4>
+                        <p class="salary-amount total">4,700 MDL</p>
+                        <small>Înainte de taxe</small>
+                    </div>
+                </div>
+                
+                <div class="salary-history">
+                    <h4>📊 Istoric Salarii</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Luna</th>
+                                <th>Ore</th>
+                                <th>Salariu Bază</th>
+                                <th>Bonusuri</th>
+                                <th>Total</th>
+                                <th>Fluturaș</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Noiembrie 2025</td>
+                                <td>176h</td>
+                                <td>4,400 MDL</td>
+                                <td>300 MDL</td>
+                                <td>4,700 MDL</td>
+                                <td><button class="btn-small">📥</button></td>
+                            </tr>
+                            <tr>
+                                <td>Octombrie 2025</td>
+                                <td>184h</td>
+                                <td>4,600 MDL</td>
+                                <td>600 MDL</td>
+                                <td>5,200 MDL</td>
+                                <td><button class="btn-small">📥</button></td>
+                            </tr>
+                            <tr>
+                                <td>Septembrie 2025</td>
+                                <td>168h</td>
+                                <td>4,200 MDL</td>
+                                <td>400 MDL</td>
+                                <td>4,600 MDL</td>
+                                <td><button class="btn-small">📥</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="dashboard-worker.js"></script>
+</body>
+</html>
