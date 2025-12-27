@@ -1,5 +1,63 @@
 /* Dashboard Styles */
 
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.modal-content h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.modal-content p {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+#locationStatus {
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin: 20px 0;
+    color: #666;
+    font-weight: 500;
+}
+
+#locationStatus small {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.85em;
+    color: #999;
+}
+
+.modal-content button {
+    margin: 10px 5px;
+    padding: 12px 30px;
+}
+
 /* Login Page */
 .login-container {
     min-height: 100vh;
@@ -1167,4 +1225,16 @@
     .filter-select {
         width: 100%;
     }
+}
+
+/* Location Modal */
+.location-modal {
+    max-width: 600px;
+}
+
+.location-modal div {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    line-height: 1.8;
+    color: #2c3e50;
 }

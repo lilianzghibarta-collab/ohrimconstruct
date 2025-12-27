@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin - Ohrim Construct</title>
+    <title>Admin Dashboard - Ohrim Construct</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dashboard.css">
 </head>
@@ -21,35 +21,35 @@
                     <span>📊</span> Dashboard
                 </a>
                 <a href="#" class="nav-item" data-section="workers">
-                    <span>👷</span> Muncitori
+                    <span>👷</span> Workers
                 </a>
                 <a href="#" class="nav-item" data-section="attendance">
-                    <span>⏰</span> Pontaj & Prezență
+                    <span>⏰</span> Attendance & Location
                 </a>
                 <a href="#" class="nav-item" data-section="sites">
-                    <span>🏗️</span> Șantiere
+                    <span>🏗️</span> Construction Sites
                 </a>
                 <a href="#" class="nav-item" data-section="tasks-admin">
-                    <span>✅</span> Asignare Sarcini
+                    <span>✅</span> Assign Tasks
                 </a>
                 <a href="#" class="nav-item" data-section="equipment-admin">
-                    <span>🔧</span> Gestionare Echipamente
+                    <span>🔧</span> Equipment Management
                 </a>
                 <a href="#" class="nav-item" data-section="documents-admin">
-                    <span>📄</span> Documente
+                    <span>📄</span> Documents
                 </a>
                 <a href="#" class="nav-item" data-section="requests-admin">
-                    <span>📝</span> Cereri Angajați
+                    <span>📝</span> Employee Requests
                 </a>
                 <a href="#" class="nav-item" data-section="payroll">
-                    <span>💰</span> Salarii
+                    <span>💰</span> Payroll
                 </a>
                 <a href="#" class="nav-item" data-section="reports">
-                    <span>📈</span> Rapoarte
+                    <span>📈</span> Reports
                 </a>
             </nav>
             
-            <button class="btn-logout" onclick="logout()">🚪 Deconectare</button>
+            <button class="btn-logout" onclick="logout()">🚺 Logout</button>
         </aside>
         
         <!-- Main Content -->
@@ -231,89 +231,57 @@
             
             <!-- Attendance Section -->
             <section id="attendance" class="content-section">
-                <h3>⏰ Monitorizare Pontaj & Prezență</h3>
+                <h3>⏰ Real-Time Attendance & Location Tracking</h3>
                 
                 <div class="attendance-summary">
                     <div class="summary-card">
-                        <h4>Prezența Astăzi</h4>
+                        <h4>Present Today</h4>
                         <p class="big-number">22/24</p>
                         <small>91.7%</small>
                     </div>
                     <div class="summary-card">
-                        <h4>Ore Totale Astăzi</h4>
+                        <h4>Total Hours Today</h4>
                         <p class="big-number">176h</p>
-                        <small>Până acum</small>
+                        <small>So far</small>
                     </div>
                     <div class="summary-card">
-                        <h4>Întârzieri</h4>
+                        <h4>Late Arrivals</h4>
                         <p class="big-number warning">2</p>
-                        <small>Peste 15 min</small>
+                        <small>Over 15 min</small>
                     </div>
                     <div class="summary-card">
-                        <h4>Absențe</h4>
+                        <h4>Absences</h4>
                         <p class="big-number">2</p>
-                        <small>Fără pontaj</small>
+                        <small>No clock in</small>
                     </div>
                 </div>
                 
                 <div class="attendance-filters">
                     <input type="date" class="filter-input" value="2025-12-27">
                     <select class="filter-select">
-                        <option>Toate Șantierele</option>
-                        <option>Bloc Rezidențial A3</option>
-                        <option>Casă Durlești</option>
+                        <option>All Sites</option>
+                        <option>Residential Block A3</option>
+                        <option>House Durlești</option>
                     </select>
-                    <button class="btn-secondary">📊 Export Raport</button>
+                    <button class="btn-secondary">📊 Export Report</button>
                 </div>
                 
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th>Muncitor</th>
-                            <th>Șantier</th>
-                            <th>Intrare</th>
-                            <th>Ieșire</th>
-                            <th>Pauze</th>
-                            <th>Total Ore</th>
+                            <th>Worker</th>
+                            <th>Site</th>
+                            <th>Clock In</th>
+                            <th>Clock Out</th>
+                            <th>Breaks</th>
+                            <th>Total Hours</th>
                             <th>Status</th>
+                            <th>Location</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Vasile Popescu</td>
-                            <td>Bloc Rezidențial A3</td>
-                            <td>08:00</td>
-                            <td>-</td>
-                            <td>30m</td>
-                            <td>6.5h</td>
-                            <td><span class="status-badge active">🟢 Lucru</span></td>
-                        </tr>
-                        <tr>
-                            <td>Ion Ciobanu</td>
-                            <td>Bloc Rezidențial A3</td>
-                            <td>08:15</td>
-                            <td>-</td>
-                            <td>30m</td>
-                            <td>6.25h</td>
-                            <td><span class="status-badge warning">⚠️ Întârziere</span></td>
-                        </tr>
-                        <tr>
-                            <td>Maria Ionescu</td>
-                            <td>Casă Durlești</td>
-                            <td>07:55</td>
-                            <td>-</td>
-                            <td>25m</td>
-                            <td>6.75h</td>
-                            <td><span class="status-badge active">🟢 Lucru</span></td>
-                        </tr>
-                        <tr>
-                            <td>Andrei Moraru</td>
-                            <td>Renovare Complex B</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td><span class="status-badge holiday">🏖️ Concediu</span></td>
+                            <td colspan="8" style="text-align: center;">Loading attendance data...</td>
                         </tr>
                     </tbody>
                 </table>
