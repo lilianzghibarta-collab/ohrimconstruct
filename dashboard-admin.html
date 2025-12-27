@@ -157,9 +157,13 @@
             <!-- Workers Section -->
             <section id="workers" class="content-section">
                 <div class="section-header">
-                    <h3>👷 Gestionare Muncitori</h3>
-                    <button class="btn-primary">➕ Adaugă Muncitor</button>
+                    <h3>👷 Workers Management</h3>
+                    <button class="btn-primary" id="addWorkerBtn">➕ Add Worker</button>
                 </div>
+                <div id="workersContainer">
+                    <p>Loading workers...</p>
+                </div>
+            </section>
                 
                 <div class="filters">
                     <input type="text" placeholder="🔍 Caută muncitor..." class="search-input">
@@ -372,9 +376,13 @@
             <!-- Tasks Admin Section -->
             <section id="tasks-admin" class="content-section">
                 <div class="section-header">
-                    <h3>✅ Asignare & Monitorizare Sarcini</h3>
-                    <button class="btn-primary">➕ Sarcină Nouă</button>
+                    <h3>✅ Assign Tasks</h3>
+                    <button class="btn-primary" id="addTaskBtn">➕ Add Task</button>
                 </div>
+                <div id="adminTasksContainer">
+                    <p>Loading tasks...</p>
+                </div>
+            </section>
                 
                 <div class="tasks-filters">
                     <select class="filter-select">
@@ -515,7 +523,11 @@
             
             <!-- Requests Admin Section -->
             <section id="requests-admin" class="content-section">
-                <h3>📝 Cereri Angajați</h3>
+                <h3>📝 Employee Requests</h3>
+                <div id="adminRequestsContainer">
+                    <p>Loading requests...</p>
+                </div>
+            </section>
                 
                 <div class="requests-stats">
                     <div class="req-stat-card">
@@ -582,7 +594,14 @@
             
             <!-- Payroll Section -->
             <section id="payroll" class="content-section">
-                <h3>💰 Gestionare Salarii</h3>
+                <div class="section-header">
+                    <h3>💰 Payroll Management</h3>
+                    <button class="btn-primary" id="generatePayrollBtn">💰 Generate Payroll</button>
+                </div>
+                <div id="payrollContainer">
+                    <p>Loading payroll...</p>
+                </div>
+            </section>
                 
                 <div class="payroll-summary">
                     <div class="payroll-card">
@@ -655,7 +674,31 @@
             
             <!-- Reports Section -->
             <section id="reports" class="content-section">
-                <h3>📈 Rapoarte & Analize</h3>
+                <div class="section-header">
+                    <h3>📈 Reports & Analytics</h3>
+                    <button class="btn-primary" id="generateReportBtn">📊 Generate Report</button>
+                </div>
+                
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <div class="report-icon">📊</div>
+                        <h4>Attendance Report</h4>
+                        <p>Monthly attendance and hours worked by workers</p>
+                    </div>
+                    
+                    <div class="report-card">
+                        <div class="report-icon">💰</div>
+                        <h4>Payroll Report</h4>
+                        <p>Salaries, bonuses and expenses</p>
+                    </div>
+                    
+                    <div class="report-card">
+                        <div class="report-icon">🔧</div>
+                        <h4>Equipment Report</h4>
+                        <p>Inventory and equipment condition</p>
+                    </div>
+                </div>
+            </section>
                 
                 <div class="reports-grid">
                     <div class="report-card">
@@ -705,6 +748,8 @@
     </div>
     
     <script src="translations.js"></script>
+    <script src="demo-data.js"></script>
+    <script src="admin-features.js"></script>
     <script src="dashboard-admin.js"></script>
 </body>
 </html>

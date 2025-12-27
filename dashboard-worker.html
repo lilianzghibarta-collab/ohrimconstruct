@@ -230,50 +230,19 @@
             
             <!-- Documents Section -->
             <section id="documents" class="content-section">
-                <h3>📄 Documentele Mele</h3>
-                <div class="documents-grid">
-                    <div class="document-card">
-                        <div class="doc-icon">📋</div>
-                        <h4>Contract de Muncă</h4>
-                        <p>contract_2024.pdf</p>
-                        <button class="btn-small">📥 Descarcă</button>
-                    </div>
-                    <div class="document-card">
-                        <div class="doc-icon">🆔</div>
-                        <h4>Buletin Identitate</h4>
-                        <p>buletin_copie.pdf</p>
-                        <button class="btn-small">📥 Descarcă</button>
-                    </div>
-                    <div class="document-card">
-                        <div class="doc-icon">🏥</div>
-                        <h4>Certificat Medical</h4>
-                        <p>medical_2025.pdf</p>
-                        <button class="btn-small">📥 Descarcă</button>
-                    </div>
-                    <div class="document-card">
-                        <div class="doc-icon">🎓</div>
-                        <h4>Certificate Calificare</h4>
-                        <p>calificare_sudor.pdf</p>
-                        <button class="btn-small">📥 Descarcă</button>
-                    </div>
-                    <div class="document-card">
-                        <div class="doc-icon">💰</div>
-                        <h4>Fluturaș Salariu</h4>
-                        <p>salariu_nov_2025.pdf</p>
-                        <button class="btn-small">📥 Descarcă</button>
-                    </div>
-                    <div class="document-card upload">
-                        <div class="doc-icon">➕</div>
-                        <h4>Încarcă Document</h4>
-                        <button class="btn-small">📤 Upload</button>
-                    </div>
+                <div class="section-header">
+                    <h3>📄 My Documents</h3>
+                    <button class="btn-primary" id="uploadDocBtn">📤 Upload Document</button>
+                </div>
+                <div id="documentsContainer" class="documents-grid">
+                    <p>Loading documents...</p>
                 </div>
             </section>
             
             <!-- Tasks Section -->
             <section id="tasks" class="content-section">
-                <h3>✅ Sarcini Zilnice</h3>
-                <div class="tasks-list">
+                <h3>✅ Daily Tasks</h3>
+                <div id="tasksContainer" class="tasks-list">
                     <div class="task-item completed">
                         <input type="checkbox" checked>
                         <div class="task-info">
@@ -319,55 +288,19 @@
             
             <!-- Equipment Section -->
             <section id="equipment" class="content-section">
-                <h3>🔧 Echipamente Primite</h3>
-                <div class="equipment-list">
-                    <div class="equipment-item">
-                        <div class="eq-icon">🔨</div>
-                        <div class="eq-info">
-                            <h4>Ciocan Pneumatic</h4>
-                            <p>ID: EQ-2301 | Data primirii: 01 Dec 2025</p>
-                            <span class="eq-status active">🟢 În uz</span>
-                        </div>
-                        <button class="btn-small">📋 Raportează</button>
-                    </div>
-                    <div class="equipment-item">
-                        <div class="eq-icon">🔧</div>
-                        <h4>Sfredel Electric</h4>
-                        <p>ID: EQ-2315 | Data primirii: 26 Dec 2025</p>
-                        <span class="eq-status active">🟢 În uz</span>
-                        <button class="btn-small">📋 Raportează</button>
-                    </div>
-                    <div class="equipment-item">
-                        <div class="eq-icon">🦺</div>
-                        <div class="eq-info">
-                            <h4>Vestă de Protecție</h4>
-                            <p>ID: EQ-2401 | Data primirii: 01 Dec 2025</p>
-                            <span class="eq-status active">🟢 În uz</span>
-                        </div>
-                        <button class="btn-small">📋 Raportează</button>
-                    </div>
-                    <div class="equipment-item">
-                        <div class="eq-icon">👷</div>
-                        <div class="eq-info">
-                            <h4>Cască de Protecție</h4>
-                            <p>ID: EQ-2405 | Data primirii: 01 Dec 2025</p>
-                            <span class="eq-status active">🟢 În uz</span>
-                        </div>
-                        <button class="btn-small">📋 Raportează</button>
-                    </div>
-                </div>
-                
-                <div class="equipment-actions">
-                    <button class="btn-primary">🔧 Solicitare Echipament Nou</button>
-                    <button class="btn-secondary">⚠️ Raportare Defecțiune</button>
-                    <button class="btn-secondary">↩️ Returnare Echipament</button>
+                <h3>🔧 Assigned Equipment</h3>
+                <div id="equipmentContainer" class="equipment-grid">
+                    <p>Loading equipment...</p>
                 </div>
             </section>
             
             <!-- Requests Section -->
             <section id="requests" class="content-section">
-                <h3>📝 Cereri & Concedii</h3>
-                <button class="btn-primary" onclick="openRequestForm()">➕ Cerere Nouă</button>
+                <div class="section-header">
+                    <h3>📝 Requests & Leaves</h3>
+                    <button class="btn-primary" id="newRequestBtn">➕ New Request</button>
+                </div>
+                <div id="requestsContainer">
                 
                 <div class="requests-list">
                     <div class="request-item approved">
@@ -393,71 +326,17 @@
             
             <!-- Salary Section -->
             <section id="salary" class="content-section">
-                <h3>💰 Salarii & Bonusuri</h3>
-                <div class="salary-overview">
-                    <div class="salary-card">
-                        <h4>Salariu Luna Curentă</h4>
-                        <p class="salary-amount">4,200 MDL</p>
-                        <small>168 ore × 25 MDL/oră</small>
-                    </div>
-                    <div class="salary-card">
-                        <h4>Bonusuri Luna Curentă</h4>
-                        <p class="salary-amount">500 MDL</p>
-                        <small>Bonus performanță</small>
-                    </div>
-                    <div class="salary-card">
-                        <h4>Total Estimat</h4>
-                        <p class="salary-amount total">4,700 MDL</p>
-                        <small>Înainte de taxe</small>
-                    </div>
-                </div>
-                
-                <div class="salary-history">
-                    <h4>📊 Istoric Salarii</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Luna</th>
-                                <th>Ore</th>
-                                <th>Salariu Bază</th>
-                                <th>Bonusuri</th>
-                                <th>Total</th>
-                                <th>Fluturaș</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Noiembrie 2025</td>
-                                <td>176h</td>
-                                <td>4,400 MDL</td>
-                                <td>300 MDL</td>
-                                <td>4,700 MDL</td>
-                                <td><button class="btn-small">📥</button></td>
-                            </tr>
-                            <tr>
-                                <td>Octombrie 2025</td>
-                                <td>184h</td>
-                                <td>4,600 MDL</td>
-                                <td>600 MDL</td>
-                                <td>5,200 MDL</td>
-                                <td><button class="btn-small">📥</button></td>
-                            </tr>
-                            <tr>
-                                <td>Septembrie 2025</td>
-                                <td>168h</td>
-                                <td>4,200 MDL</td>
-                                <td>400 MDL</td>
-                                <td>4,600 MDL</td>
-                                <td><button class="btn-small">📥</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <h3>💰 Salary & Bonuses</h3>
+                <div id="salaryContainer">
+                    <p>Loading salary information...</p>
                 </div>
             </section>
         </main>
     </div>
     
     <script src="translations.js"></script>
+    <script src="demo-data.js"></script>
+    <script src="worker-features.js"></script>
     <script src="dashboard-worker.js"></script>
 </body>
 </html>
