@@ -105,6 +105,37 @@ body {
     box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5);
 }
 
+/* Language Selector */
+.language-selector {
+    display: flex;
+    gap: 5px;
+    margin-left: 20px;
+}
+
+.lang-btn {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: all 0.3s;
+}
+
+.lang-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+.lang-btn.active {
+    background: var(--gold);
+    color: var(--primary-black);
+    border-color: var(--gold);
+}
+
 .mobile-menu-toggle {
     display: none;
     flex-direction: column;
@@ -491,6 +522,17 @@ body {
     #nav ul li a {
         display: block;
         padding: 0.75rem 1rem;
+    }
+
+    .language-selector {
+        position: absolute;
+        top: 1rem;
+        right: 60px;
+    }
+
+    .lang-btn {
+        padding: 4px 8px;
+        font-size: 0.75em;
     }
 
     .hero-content h1 {
