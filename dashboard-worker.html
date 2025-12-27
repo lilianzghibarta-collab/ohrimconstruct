@@ -58,36 +58,60 @@
             
             <!-- Overview Section -->
             <section id="overview" class="content-section active">
+                <!-- Live Timer and Clock Out -->
+                <div class="work-timer-card" id="workTimerCard" style="display: none;">
+                    <div class="timer-header">
+                        <h2>🕐 Active Work Session</h2>
+                        <span class="status-indicator">🟢 Working</span>
+                    </div>
+                    <div class="timer-content">
+                        <div class="timer-info">
+                            <div class="timer-item">
+                                <span class="label">Clock In Time:</span>
+                                <span class="value" id="timerClockIn">--:--</span>
+                            </div>
+                            <div class="timer-item">
+                                <span class="label">Time Worked:</span>
+                                <span class="value timer-display" id="liveTimer">00:00:00</span>
+                            </div>
+                        </div>
+                        <button class="btn-clockout" onclick="clockOut()">
+                            <span class="btn-icon">🏁</span>
+                            <span class="btn-text">Clock Out Now</span>
+                        </button>
+                    </div>
+                </div>
+
                 <div class="cards-grid">
                     <div class="info-card">
-                        <h3>⏰ Ore Luna Curentă</h3>
+                        <h3>⏰ Hours This Month</h3>
                         <p class="big-number">168</p>
-                        <small>ore lucrate</small>
+                        <small>hours worked</small>
                     </div>
                     <div class="info-card">
-                        <h3>📍 Șantier Actual</h3>
-                        <p class="big-text">Bloc Rezidențial A3</p>
-                        <small>Str. Constructorilor 45</small>
+                        <h3>📍 Current Site</h3>
+                        <p class="big-text">Residential Block A3</p>
+                        <small>Constructorilor St. 45</small>
                     </div>
                     <div class="info-card">
-                        <h3>✅ Sarcini Astăzi</h3>
+                        <h3>✅ Tasks Today</h3>
                         <p class="big-number">3/5</p>
-                        <small>completate</small>
+                        <small>completed</small>
                     </div>
                     <div class="info-card">
-                        <h3>💰 Salariu Estimat</h3>
+                        <h3>💰 Estimated Salary</h3>
                         <p class="big-number">4,200 MDL</p>
-                        <small>luna curentă</small>
+                        <small>current month</small>
                     </div>
                 </div>
                 
                 <div class="recent-activity">
-                    <h3>📋 Activitate Recentă</h3>
+                    <h3>📋 Recent Activity</h3>
                     <ul class="activity-list">
-                        <li>✅ Pontaj intrare: 08:00 AM</li>
-                        <li>🔧 Primit echipament: Sfredel electric</li>
-                        <li>✅ Finalizat: Montare cadre ferestre etaj 2</li>
-                        <li>📝 Cerere concediu aprobată: 15-20 Ian 2026</li>
+                        <li>✅ Clock in: 08:00 AM</li>
+                        <li>🔧 Received equipment: Electric drill</li>
+                        <li>✅ Completed: Window frame installation floor 2</li>
+                        <li>📝 Leave request approved: 15-20 Jan 2026</li>
                     </ul>
                 </div>
             </section>

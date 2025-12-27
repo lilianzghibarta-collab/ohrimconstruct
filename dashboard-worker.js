@@ -1,5 +1,7 @@
 // Dashboard Worker Logic
 
+let timerInterval = null;
+
 document.addEventListener('DOMContentLoaded', function() {
     // Check if user is logged in
     if (sessionStorage.getItem('loggedIn') !== 'true' || 
@@ -19,6 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if needs clock in
     if (sessionStorage.getItem('needsClockIn') === 'true') {
         showClockInModal();
+    } else {
+        // Check if already clocked in today and show timer
+        checkAndShowTimer();
     }
     
     // Navigation
@@ -52,6 +57,67 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load today's attendance if exists
     loadTodaysAttendance();
 });
+
+function checkAndShowTimer() {
+    const username = sessionStorage.getItem('username');
+    const today = new Date().toDateString();
+    const attendanceKey = `attendance_${username}_${today}`;
+    const record = JSON.parse(localStorage.getItem(attendanceKey));
+    
+    if (record && !record.clockOut) {
+        // Show timer card
+        const timerCard = document.getElementById('workTimerCard');
+        timerCard.style.display = 'block';
+        
+        // Set clock in time
+        document.getElementById('timerClockIn').textContent = record.clockInTime;
+        
+        // Start live timer
+        startLiveTimer(new Date(record.clockIn));
+    }
+}
+
+function startLiveTimer(clockInDate) {
+    // Clear any existing interval
+    if (timerInterval) {
+        clearInterval(timerInterval);
+    }
+    
+    function updateTimer() {
+        const now = new Date();
+        const diff = now - clockInDate;
+        
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        
+        const timerDisplay = document.getElementById('liveTimer');
+        if (timerDisplay) {
+            timerDisplay.textContent = timeString;
+        }
+    }
+    
+    // Update immediately
+    updateTimer();
+    
+    // Update every second
+    timerInterval = setInterval(updateTimer, 1000);
+}
+
+function stopLiveTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+    
+    // Hide timer card
+    const timerCard = document.getElementById('workTimerCard');
+    if (timerCard) {
+        timerCard.style.display = 'none';
+    }
+}
 
 function updateDateTime() {
     const now = new Date();
@@ -241,6 +307,9 @@ function clockOut() {
                     allAttendance[index] = record;
                     localStorage.setItem('allAttendance', JSON.stringify(allAttendance));
                 }
+                
+                // Stop timer
+                stopLiveTimer();
                 
                 loadTodaysAttendance();
                 alert('✅ Successfully clocked out at ' + record.clockOutTime);
