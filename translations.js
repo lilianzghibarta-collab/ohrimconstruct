@@ -49,7 +49,47 @@ const translations = {
         contact_success: "✓ Message sent successfully! We will respond as soon as possible.",
         
         // Footer
-        footer_rights: "All rights reserved."
+        footer_rights: "All rights reserved.",
+        
+        // Login Page
+        login_title: "Login - Ohrim Construct Portal",
+        login_subtitle: "Employee & Administration Portal",
+        login_username: "👤 Username",
+        login_password: "🔒 Password",
+        login_usertype: "👥 User Type",
+        login_worker: "Worker",
+        login_admin: "Administrator",
+        login_signin: "Sign In",
+        login_demo_title: "🔑 Demo Accounts:",
+        login_demo_worker: "Worker:",
+        login_demo_worker_creds: "user: worker / pass: worker123",
+        login_demo_admin: "Admin:",
+        login_demo_admin_creds: "user: admin / pass: admin123",
+        login_back: "← Back to main page",
+        
+        // Dashboard Worker
+        dash_worker_title: "Worker Dashboard",
+        dash_overview: "📊 Overview",
+        dash_timesheet: "⏰ Timesheet & Hours",
+        dash_location: "📍 Site Location",
+        dash_documents: "📄 Documents",
+        dash_tasks: "✅ Daily Tasks",
+        dash_equipment: "🔧 Equipment",
+        dash_requests: "📝 Requests & Leaves",
+        dash_salary: "💰 Salary & Bonuses",
+        dash_logout: "🚪 Logout",
+        
+        // Dashboard Admin
+        dash_admin_title: "Admin Dashboard",
+        dash_workers: "👷 Workers",
+        dash_attendance: "⏰ Attendance & Location",
+        dash_sites: "🏗️ Construction Sites",
+        dash_tasks_admin: "✅ Assign Tasks",
+        dash_equipment_admin: "🔧 Equipment Management",
+        dash_documents_admin: "📄 Documents",
+        dash_requests_admin: "📝 Employee Requests",
+        dash_payroll: "💰 Payroll",
+        dash_reports: "📈 Reports"
     },
     
     ro: {
@@ -100,7 +140,47 @@ const translations = {
         contact_success: "✓ Mesaj trimis cu succes! Vă vom răspunde cât mai curând posibil.",
         
         // Footer
-        footer_rights: "Toate drepturile rezervate."
+        footer_rights: "Toate drepturile rezervate.",
+        
+        // Pagina Login
+        login_title: "Autentificare - Portal Ohrim Construct",
+        login_subtitle: "Portal Angajați & Administrare",
+        login_username: "👤 Utilizator",
+        login_password: "🔒 Parolă",
+        login_usertype: "👥 Tip Utilizator",
+        login_worker: "Muncitor",
+        login_admin: "Administrator",
+        login_signin: "Autentificare",
+        login_demo_title: "🔑 Conturi Demo:",
+        login_demo_worker: "Muncitor:",
+        login_demo_worker_creds: "user: worker / parola: worker123",
+        login_demo_admin: "Admin:",
+        login_demo_admin_creds: "user: admin / parola: admin123",
+        login_back: "← Înapoi la pagina principală",
+        
+        // Dashboard Muncitor
+        dash_worker_title: "Dashboard Muncitor",
+        dash_overview: "📊 Prezentare Generală",
+        dash_timesheet: "⏰ Pontaj & Ore",
+        dash_location: "📍 Locație Șantier",
+        dash_documents: "📄 Documente",
+        dash_tasks: "✅ Sarcini Zilnice",
+        dash_equipment: "🔧 Echipamente",
+        dash_requests: "📝 Cereri & Concedii",
+        dash_salary: "💰 Salarii & Bonusuri",
+        dash_logout: "🚪 Deconectare",
+        
+        // Dashboard Admin
+        dash_admin_title: "Dashboard Administrator",
+        dash_workers: "👷 Muncitori",
+        dash_attendance: "⏰ Prezență & Locație",
+        dash_sites: "🏗️ Șantiere",
+        dash_tasks_admin: "✅ Atribuire Sarcini",
+        dash_equipment_admin: "🔧 Gestionare Echipamente",
+        dash_documents_admin: "📄 Documente",
+        dash_requests_admin: "📝 Cereri Angajați",
+        dash_payroll: "💰 Salarizare",
+        dash_reports: "📈 Rapoarte"
     },
     
     ru: {
@@ -151,7 +231,47 @@ const translations = {
         contact_success: "✓ Сообщение успешно отправлено! Мы ответим вам как можно скорее.",
         
         // Footer
-        footer_rights: "Все права защищены."
+        footer_rights: "Все права защищены.",
+        
+        // Страница входа
+        login_title: "Вход - Портал Ohrim Construct",
+        login_subtitle: "Портал сотрудников и администрации",
+        login_username: "👤 Имя пользователя",
+        login_password: "🔒 Пароль",
+        login_usertype: "👥 Тип пользователя",
+        login_worker: "Рабочий",
+        login_admin: "Администратор",
+        login_signin: "Войти",
+        login_demo_title: "🔑 Демо-аккаунты:",
+        login_demo_worker: "Рабочий:",
+        login_demo_worker_creds: "логин: worker / пароль: worker123",
+        login_demo_admin: "Админ:",
+        login_demo_admin_creds: "логин: admin / пароль: admin123",
+        login_back: "← Назад на главную",
+        
+        // Панель рабочего
+        dash_worker_title: "Панель рабочего",
+        dash_overview: "📊 Обзор",
+        dash_timesheet: "⏰ Табель учета рабочего времени",
+        dash_location: "📍 Местоположение объекта",
+        dash_documents: "📄 Документы",
+        dash_tasks: "✅ Ежедневные задачи",
+        dash_equipment: "🔧 Оборудование",
+        dash_requests: "📝 Запросы и отпуска",
+        dash_salary: "💰 Зарплата и бонусы",
+        dash_logout: "🚪 Выход",
+        
+        // Панель администратора
+        dash_admin_title: "Панель администратора",
+        dash_workers: "👷 Рабочие",
+        dash_attendance: "⏰ Посещаемость и местоположение",
+        dash_sites: "🏗️ Стройплощадки",
+        dash_tasks_admin: "✅ Назначить задачи",
+        dash_equipment_admin: "🔧 Управление оборудованием",
+        dash_documents_admin: "📄 Документы",
+        dash_requests_admin: "📝 Запросы сотрудников",
+        dash_payroll: "💰 Зарплата",
+        dash_reports: "📈 Отчеты"
     }
 };
 
@@ -160,26 +280,33 @@ function changeLanguage(lang) {
     // Save language preference
     localStorage.setItem('selectedLanguage', lang);
     
-    // Language data with flags
-    const langData = {
-        en: { flag: '🇬🇧', code: 'EN' },
-        ro: { flag: '🇷🇴', code: 'RO' },
-        ru: { flag: '🇷🇺', code: 'RU' }
+    // Language names for display
+    const langNames = {
+        en: 'English',
+        ro: 'Română',
+        ru: 'Русский'
     };
     
     // Update all elements with data-translate attribute
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
         if (translations[lang] && translations[lang][key]) {
-            element.textContent = translations[lang][key];
+            // Check if it's an input with placeholder
+            if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
+                element.placeholder = translations[lang][key];
+            } else {
+                element.textContent = translations[lang][key];
+            }
         }
     });
     
     // Update current language display
     const currentLang = document.getElementById('currentLang');
-    if (currentLang && langData[lang]) {
-        currentLang.querySelector('.flag').textContent = langData[lang].flag;
-        currentLang.querySelector('.lang-code').textContent = langData[lang].code;
+    if (currentLang && langNames[lang]) {
+        const langNameSpan = currentLang.querySelector('.lang-name');
+        if (langNameSpan) {
+            langNameSpan.textContent = langNames[lang];
+        }
     }
     
     // Update active language option
@@ -199,8 +326,10 @@ function toggleLangMenu() {
     const menu = document.getElementById('langMenu');
     const button = document.getElementById('currentLang');
     
-    menu.classList.toggle('open');
-    button.classList.toggle('open');
+    if (menu && button) {
+        menu.classList.toggle('open');
+        button.classList.toggle('open');
+    }
 }
 
 // Close dropdown when clicking outside
@@ -209,9 +338,9 @@ function closeLangMenu(event) {
     const menu = document.getElementById('langMenu');
     const button = document.getElementById('currentLang');
     
-    if (!dropdown.contains(event.target)) {
-        menu.classList.remove('open');
-        button.classList.remove('open');
+    if (dropdown && !dropdown.contains(event.target)) {
+        if (menu) menu.classList.remove('open');
+        if (button) button.classList.remove('open');
     }
 }
 

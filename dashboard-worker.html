@@ -1,13 +1,31 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Muncitor - Ohrim Construct</title>
+    <title data-translate="dash_worker_title">Dashboard Muncitor - Ohrim Construct</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
+    <div class="language-dropdown" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+        <button class="lang-current" id="currentLang">
+            <span class="lang-name">English</span>
+            <span class="arrow">▼</span>
+        </button>
+        <div class="lang-menu" id="langMenu">
+            <button class="lang-option active" data-lang="en">
+                <span class="lang-name">English</span>
+            </button>
+            <button class="lang-option" data-lang="ro">
+                <span class="lang-name">Română</span>
+            </button>
+            <button class="lang-option" data-lang="ru">
+                <span class="lang-name">Русский</span>
+            </button>
+        </div>
+    </div>
+    
     <div class="dashboard-container">
         <!-- Sidebar -->
         <aside class="sidebar">
@@ -18,32 +36,32 @@
             
             <nav class="sidebar-nav">
                 <a href="#" class="nav-item active" data-section="overview">
-                    <span>📊</span> Prezentare Generală
+                    <span data-translate="dash_overview">📊 Prezentare Generală</span>
                 </a>
                 <a href="#" class="nav-item" data-section="timesheet">
-                    <span>⏰</span> Pontaj & Ore
+                    <span data-translate="dash_timesheet">⏰ Pontaj & Ore</span>
                 </a>
                 <a href="#" class="nav-item" data-section="location">
-                    <span>📍</span> Locație Șantier
+                    <span data-translate="dash_location">📍 Locație Șantier</span>
                 </a>
                 <a href="#" class="nav-item" data-section="documents">
-                    <span>📄</span> Documente
+                    <span data-translate="dash_documents">📄 Documente</span>
                 </a>
                 <a href="#" class="nav-item" data-section="tasks">
-                    <span>✅</span> Sarcini Zilnice
+                    <span data-translate="dash_tasks">✅ Sarcini Zilnice</span>
                 </a>
                 <a href="#" class="nav-item" data-section="equipment">
-                    <span>🔧</span> Echipamente
+                    <span data-translate="dash_equipment">🔧 Echipamente</span>
                 </a>
                 <a href="#" class="nav-item" data-section="requests">
-                    <span>📝</span> Cereri & Concedii
+                    <span data-translate="dash_requests">📝 Cereri & Concedii</span>
                 </a>
                 <a href="#" class="nav-item" data-section="salary">
-                    <span>💰</span> Salarii & Bonusuri
+                    <span data-translate="dash_salary">💰 Salarii & Bonusuri</span>
                 </a>
             </nav>
             
-            <button class="btn-logout" onclick="logout()">🚪 Deconectare</button>
+            <button class="btn-logout" onclick="logout()"><span data-translate="dash_logout">🚪 Deconectare</span></button>
         </aside>
         
         <!-- Main Content -->
@@ -439,6 +457,7 @@
         </main>
     </div>
     
+    <script src="translations.js"></script>
     <script src="dashboard-worker.js"></script>
 </body>
 </html>

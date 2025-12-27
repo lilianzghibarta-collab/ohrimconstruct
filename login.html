@@ -3,52 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Ohrim Construct Portal</title>
+    <title data-translate="login_title">Login - Ohrim Construct Portal</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
+    <div class="language-dropdown" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+        <button class="lang-current" id="currentLang">
+            <span class="lang-name">English</span>
+            <span class="arrow">▼</span>
+        </button>
+        <div class="lang-menu" id="langMenu">
+            <button class="lang-option active" data-lang="en">
+                <span class="lang-name">English</span>
+            </button>
+            <button class="lang-option" data-lang="ro">
+                <span class="lang-name">Română</span>
+            </button>
+            <button class="lang-option" data-lang="ru">
+                <span class="lang-name">Русский</span>
+            </button>
+        </div>
+    </div>
+    
     <div class="login-container">
         <div class="login-box">
             <div class="logo-section">
                 <h1>🏗️ OHRIM CONSTRUCT</h1>
-                <p>Employee & Administration Portal</p>
+                <p data-translate="login_subtitle">Employee & Administration Portal</p>
             </div>
             
             <form id="loginForm" class="login-form">
                 <div class="form-group">
-                    <label for="username">👤 Username</label>
+                    <label for="username"><span data-translate="login_username">👤 Username</span></label>
                     <input type="text" id="username" name="username" required placeholder="Enter username">
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">🔒 Password</label>
+                    <label for="password"><span data-translate="login_password">🔒 Password</span></label>
                     <input type="password" id="password" name="password" required placeholder="Enter password">
                 </div>
                 
                 <div class="form-group">
-                    <label for="userType">👥 User Type</label>
+                    <label for="userType"><span data-translate="login_usertype">👥 User Type</span></label>
                     <select id="userType" name="userType" required>
-                        <option value="worker">Worker</option>
-                        <option value="admin">Administrator</option>
+                        <option value="worker" data-translate="login_worker">Worker</option>
+                        <option value="admin" data-translate="login_admin">Administrator</option>
                     </select>
                 </div>
                 
-                <button type="submit" class="btn-login">Sign In</button>
+                <button type="submit" class="btn-login" data-translate="login_signin">Sign In</button>
                 
                 <div id="errorMessage" class="error-message" style="display: none;"></div>
             </form>
             
             <div class="demo-credentials">
-                <h4>🔑 Demo Accounts:</h4>
-                <p><strong>Worker:</strong> user: worker / pass: worker123</p>
-                <p><strong>Admin:</strong> user: admin / pass: admin123</p>
+                <h4 data-translate="login_demo_title">🔑 Demo Accounts:</h4>
+                <p><strong data-translate="login_demo_worker">Worker:</strong> <span data-translate="login_demo_worker_creds">user: worker / pass: worker123</span></p>
+                <p><strong data-translate="login_demo_admin">Admin:</strong> <span data-translate="login_demo_admin_creds">user: admin / pass: admin123</span></p>
             </div>
             
-            <a href="index.html" class="back-link">← Back to main page</a>
+            <a href="index.html" class="back-link" data-translate="login_back">← Back to main page</a>
         </div>
     </div>
     
+    <script src="translations.js"></script>
     <script src="login.js"></script>
 </body>
 </html>

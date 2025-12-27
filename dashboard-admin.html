@@ -3,11 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Ohrim Construct</title>
+    <title data-translate="dash_admin_title">Admin Dashboard - Ohrim Construct</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
+    <div class="language-dropdown" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+        <button class="lang-current" id="currentLang">
+            <span class="lang-name">English</span>
+            <span class="arrow">▼</span>
+        </button>
+        <div class="lang-menu" id="langMenu">
+            <button class="lang-option active" data-lang="en">
+                <span class="lang-name">English</span>
+            </button>
+            <button class="lang-option" data-lang="ro">
+                <span class="lang-name">Română</span>
+            </button>
+            <button class="lang-option" data-lang="ru">
+                <span class="lang-name">Русский</span>
+            </button>
+        </div>
+    </div>
+    
     <div class="dashboard-container">
         <!-- Sidebar -->
         <aside class="sidebar admin">
@@ -49,7 +67,7 @@
                 </a>
             </nav>
             
-            <button class="btn-logout" onclick="logout()">🚺 Logout</button>
+            <button class="btn-logout" onclick="logout()"><span data-translate="dash_logout">🚪 Logout</span></button>
         </aside>
         
         <!-- Main Content -->
@@ -686,6 +704,7 @@
         </main>
     </div>
     
+    <script src="translations.js"></script>
     <script src="dashboard-admin.js"></script>
 </body>
 </html>
