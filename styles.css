@@ -811,3 +811,18 @@ body {
         }
     }
 }
+
+/* ============================================
+   LOGO SIZE INCREASE - MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+    .logo {
+        height: 160px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        height: 120px !important;
+    }
+}

@@ -2510,3 +2510,53 @@
         height: 40px !important;
     }
 }
+
+/* ============================================
+   LOGO SIZE INCREASE & OVERLAP FIX - MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+    /* Logo size doubled */
+    .sidebar-header img {
+        max-height: 400px !important;
+    }
+    
+    /* Fix mobile menu button positioning */
+    .mobile-menu-btn {
+        top: 15px !important;
+        left: 15px !important;
+    }
+    
+    /* Fix language dropdown positioning */
+    .language-dropdown {
+        top: 15px !important;
+        right: 15px !important;
+        max-width: 120px !important;
+    }
+    
+    /* Adjust main content to not overlap with fixed buttons */
+    .main-content {
+        padding-top: 80px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Logo size doubled for small phones */
+    .sidebar-header img {
+        max-height: 260px !important;
+    }
+}
+
+/* Login page logo size */
+@media (max-width: 768px) {
+    .login-box img,
+    .logo {
+        max-width: 240px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-box img,
+    .logo {
+        max-width: 200px !important;
+    }
+}

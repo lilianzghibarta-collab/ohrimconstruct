@@ -468,16 +468,16 @@ function loadSalaryInfo() {
     );
     
     const totalHours = monthAttendance.reduce((sum, att) => sum + (parseFloat(att.totalHours) || 0), 0);
-    const hourlyRate = 25; // MDL per hour
+    const hourlyRate = 25; // EUR per hour
     const estimatedSalary = (totalHours * hourlyRate).toFixed(2);
     
     container.innerHTML = `
         <div class="salary-overview">
             <div class="salary-card">
                 <h3>💰 Current Month</h3>
-                <p class="big-number">${estimatedSalary} MDL</p>
+                <p class="big-number">${estimatedSalary} EUR</p>
                 <p>Hours Worked: ${totalHours.toFixed(2)}h</p>
-                <p>Hourly Rate: ${hourlyRate} MDL</p>
+                <p>Hourly Rate: ${hourlyRate} EUR</p>
             </div>
         </div>
         
@@ -487,9 +487,9 @@ function loadSalaryInfo() {
                 userPayroll.map(pay => `
                     <div class="payroll-card">
                         <h4>${pay.month}</h4>
-                        <p>Gross: ${pay.grossPay} MDL</p>
-                        <p>Deductions: ${pay.deductions} MDL</p>
-                        <p>Net Pay: <strong>${pay.netPay} MDL</strong></p>
+                        <p>Gross: ${pay.grossPay} EUR</p>
+                        <p>Deductions: ${pay.deductions} EUR</p>
+                        <p>Net Pay: <strong>${pay.netPay} EUR</strong></p>
                         <p>Status: <span class="status-badge ${pay.status}">${pay.status}</span></p>
                         <button onclick="downloadPayslip('${pay.id}')" class="btn-small">📥 Download Payslip</button>
                     </div>
@@ -515,10 +515,10 @@ function downloadPayslip(payId) {
 Employee: ${pay.fullName}
 Employee ID: ${pay.username}
 
-Gross Pay: ${pay.grossPay} MDL
-Deductions: ${pay.deductions} MDL
+Gross Pay: ${pay.grossPay} EUR
+Deductions: ${pay.deductions} EUR
 ----------------------------
-NET PAY: ${pay.netPay} MDL
+NET PAY: ${pay.netPay} EUR
 ========================================
 Payment Date: ${new Date(pay.paymentDate).toLocaleDateString()}
 Status: ${pay.status}

@@ -45,7 +45,7 @@ function loadWorkers() {
                     <p>${worker.position}</p>
                     <p>📱 ${worker.phone}</p>
                     <p>📧 ${worker.email}</p>
-                    <p>💰 ${worker.hourlyRate} MDL/h</p>
+                    <p>💰 ${worker.hourlyRate} EUR/h</p>
                     <span class="status-badge ${worker.status}">${worker.status}</span>
                     <div class="worker-actions">
                         <button onclick="editWorker('${worker.id}')" class="btn-small">✏️ Edit</button>
@@ -91,7 +91,7 @@ function showAddWorkerModal() {
                     <input type="email" id="workerEmail" required>
                 </div>
                 <div class="form-group">
-                    <label>Hourly Rate (MDL):</label>
+                    <label>Hourly Rate (EUR):</label>
                     <input type="number" id="workerRate" value="25" required>
                 </div>
                 <div class="modal-actions">
@@ -234,7 +234,7 @@ function loadPayroll() {
         <div class="payroll-summary">
             <div class="summary-card">
                 <h4>📊 Total Payroll This Month</h4>
-                <p class="big-number">${calculateTotalPayroll()} MDL</p>
+                <p class="big-number">${calculateTotalPayroll()} EUR</p>
             </div>
         </div>
         
@@ -258,9 +258,9 @@ function loadPayroll() {
                             <td>${pay.fullName}</td>
                             <td>${pay.month}</td>
                             <td>${pay.hours || '-'}</td>
-                            <td>${pay.grossPay} MDL</td>
-                            <td>${pay.deductions} MDL</td>
-                            <td><strong>${pay.netPay} MDL</strong></td>
+                            <td>${pay.grossPay} EUR</td>
+                            <td>${pay.deductions} EUR</td>
+                            <td><strong>${pay.netPay} EUR</strong></td>
                             <td><span class="status-badge ${pay.status}">${pay.status}</span></td>
                             <td>
                                 ${pay.status === 'pending' ? `
@@ -540,17 +540,17 @@ PAYROLL REPORT - ${currentMonth}
 ========================================
 
 Total Employees: ${monthPayroll.length}
-Total Gross Pay: ${totalGross.toFixed(2)} MDL
-Total Net Pay: ${totalNet.toFixed(2)} MDL
+Total Gross Pay: ${totalGross.toFixed(2)} EUR
+Total Net Pay: ${totalNet.toFixed(2)} EUR
 
 `;
     
     monthPayroll.forEach(pay => {
         report += `
 Employee: ${pay.fullName}
-Gross Pay: ${pay.grossPay} MDL
-Deductions: ${pay.deductions} MDL
-Net Pay: ${pay.netPay} MDL
+Gross Pay: ${pay.grossPay} EUR
+Deductions: ${pay.deductions} EUR
+Net Pay: ${pay.netPay} EUR
 Status: ${pay.status}
 ----------------------------
 `;
@@ -825,24 +825,24 @@ function generatePayrollReport() {
                     <tr>
                         <td>${p.name}</td>
                         <td>${p.hours}h</td>
-                        <td>${p.rate} MDL/h</td>
-                        <td><strong>${p.salary} MDL</strong></td>
+                        <td>${p.rate} EUR/h</td>
+                        <td><strong>${p.salary} EUR</strong></td>
                     </tr>
                 `).join('') || '<tr><td colspan="4">Nu există date</td></tr>'}
             </tbody>
             <tfoot>
                 <tr style="background: #f8f6f0; font-weight: bold;">
                     <td colspan="3">TOTAL</td>
-                    <td>${totalSalaries.toFixed(2)} MDL</td>
+                    <td>${totalSalaries.toFixed(2)} EUR</td>
                 </tr>
             </tfoot>
         </table>
         
         <div class="report-summary">
             <h4>Rezumat Financiar</h4>
-            <p>💰 Total cheltuieli salariale: ${totalSalaries.toFixed(2)} MDL</p>
+            <p>💰 Total cheltuieli salariale: ${totalSalaries.toFixed(2)} EUR</p>
             <p>👥 Număr angajați: ${payroll.length}</p>
-            <p>📊 Salariu mediu: ${(totalSalaries / payroll.length || 0).toFixed(2)} MDL</p>
+            <p>📊 Salariu mediu: ${(totalSalaries / payroll.length || 0).toFixed(2)} EUR</p>
         </div>
     `;
 }
