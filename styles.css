@@ -817,12 +817,12 @@ body {
    ============================================ */
 @media (max-width: 768px) {
     .logo {
-        height: 160px !important;
+        height: 240px !important;
     }
 }
 
 @media (max-width: 480px) {
     .logo {
-        height: 120px !important;
+        height: 180px !important;
     }
 }
