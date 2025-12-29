@@ -280,11 +280,11 @@ function changeLanguage(lang) {
     // Save language preference
     localStorage.setItem('selectedLanguage', lang);
     
-    // Language names for display
+    // Language names for display (shortened for compact UI)
     const langNames = {
-        en: 'English',
-        ro: 'Română',
-        ru: 'Русский'
+        en: 'Eng',
+        ro: 'Ro',
+        ru: 'Ru'
     };
     
     // Update all elements with data-translate attribute
