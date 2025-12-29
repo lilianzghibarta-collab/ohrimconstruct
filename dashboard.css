@@ -527,8 +527,10 @@
 }
 
 .status-badge.active {
-    background: #d4edda;
-    color: #155724;
+    background: #28a745;
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.4);
 }
 
 .status-badge.completed {
@@ -1682,8 +1684,10 @@
 }
 
 .status-badge.active {
-    background: #d4edda;
-    color: #155724;
+    background: #28a745;
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.4);
 }
 
 /* Animations */
