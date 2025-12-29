@@ -815,7 +815,17 @@ body {
 /* ============================================
    LOGO SIZE INCREASE - MOBILE
    ============================================ */
+
+/* Desktop logo size */
+.logo-img,
+.logo img {
+    height: 140px;
+    cursor: pointer;
+}
+
+/* Mobile - 3x larger (240px) */
 @media (max-width: 768px) {
+    .logo-img,
     .logo img,
     .logo a img,
     header .logo img {
@@ -824,7 +834,9 @@ body {
     }
 }
 
+/* Small phone - 3x larger (180px) */
 @media (max-width: 480px) {
+    .logo-img,
     .logo img,
     .logo a img,
     header .logo img {
