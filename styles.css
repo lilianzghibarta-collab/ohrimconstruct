@@ -816,13 +816,19 @@ body {
    LOGO SIZE INCREASE - MOBILE
    ============================================ */
 @media (max-width: 768px) {
-    .logo {
+    .logo img,
+    .logo a img,
+    header .logo img {
         height: 240px !important;
+        max-height: 240px !important;
     }
 }
 
 @media (max-width: 480px) {
-    .logo {
+    .logo img,
+    .logo a img,
+    header .logo img {
         height: 180px !important;
+        max-height: 180px !important;
     }
 }
