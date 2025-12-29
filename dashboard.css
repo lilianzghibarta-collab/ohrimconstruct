@@ -2497,24 +2497,7 @@
    BLACK BACKGROUND FOR LANGUAGE DROPDOWN
    ============================================ */
 
-/* Override language dropdown styles in dashboard pages */
-.language-dropdown .lang-current {
-}
-
-.language-dropdown .lang-current:hover {
-}
-
-.language-dropdown .lang-menu {
-}
-
-.language-dropdown .lang-option {
-}
-
-.language-dropdown .lang-option:hover {
-}
-
-.language-dropdown .lang-option.active {
-}
+/* Language dropdown styles are defined inline in HTML for specificity */
 
 
 /* ============================================
