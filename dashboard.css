@@ -659,6 +659,11 @@
 .current-shift p {
     margin: 8px 0;
     font-size: 1.05em;
+    color: #ffffff;
+}
+
+.current-shift p strong {
+    color: #fcd787;
 }
 
 .timesheet-table {
