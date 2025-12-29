@@ -318,6 +318,7 @@
     align-items: center;
     margin-bottom: 30px;
     padding-bottom: 20px;
+    padding-right: 140px;
     border-bottom: 2px solid #e0e0e0;
 }
 
@@ -2036,10 +2037,17 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
+        padding-right: 0;
+        padding-top: 60px;
     }
     
     .content-header h1 {
         font-size: 1.5em;
+    }
+    
+    .header-info {
+        font-size: 0.85em;
+        gap: 15px;
     }
     
     /* Cards responsive */
