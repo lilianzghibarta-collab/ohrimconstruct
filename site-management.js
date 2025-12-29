@@ -1,4 +1,4 @@
-// Site Management System for OHRIM CONSTRUCT
+// Site Management System for OHR BUILD
 
 // Load all sites on page load
 document.addEventListener('DOMContentLoaded', function() {
@@ -11,6 +11,101 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ==================== LOCATION PICKER FUNCTIONS ====================
+
+let mapPickerInstance = null;
+let mapMarker = null;
+
+function toggleMapPicker() {
+    const container = document.getElementById('mapPickerContainer');
+    
+    if (container.style.display === 'none') {
+        container.style.display = 'block';
+        
+        // Initialize map if not already initialized
+        if (!mapPickerInstance) {
+            setTimeout(() => {
+                initializeMapPicker();
+            }, 100);
+        }
+    } else {
+        container.style.display = 'none';
+    }
+}
+
+function closeMapPicker() {
+    document.getElementById('mapPickerContainer').style.display = 'none';
+}
+
+function initializeMapPicker() {
+    const mapDiv = document.getElementById('mapPicker');
+    
+    if (!mapDiv || mapPickerInstance) return;
+    
+    // Default to Dublin, Ireland
+    const defaultLat = 53.3498;
+    const defaultLng = -6.2603;
+    
+    // Initialize map
+    mapPickerInstance = L.map('mapPicker').setView([defaultLat, defaultLng], 13);
+    
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19
+    }).addTo(mapPickerInstance);
+    
+    // Try to center on user's location
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+                mapPickerInstance.setView([lat, lng], 15);
+            },
+            () => {
+                // Ignore errors, keep default location
+            }
+        );
+    }
+    
+    // Add click event to map
+    mapPickerInstance.on('click', async function(e) {
+        const lat = e.latlng.lat;
+        const lng = e.latlng.lng;
+        
+        // Remove existing marker
+        if (mapMarker) {
+            mapPickerInstance.removeLayer(mapMarker);
+        }
+        
+        // Add new marker
+        mapMarker = L.marker([lat, lng]).addTo(mapPickerInstance);
+        
+        // Get address using reverse geocoding
+        try {
+            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&addressdetails=1`);
+            const data = await response.json();
+            
+            let address = '';
+            if (data && data.display_name) {
+                address = data.display_name;
+            } else {
+                address = `Lat: ${lat.toFixed(6)}, Lon: ${lng.toFixed(6)}`;
+            }
+            
+            // Update selected location display
+            document.getElementById('selectedLocation').textContent = address;
+            
+            // Update address input
+            document.getElementById('siteAddress').value = address;
+            
+        } catch (error) {
+            const coords = `Lat: ${lat.toFixed(6)}, Lon: ${lng.toFixed(6)}`;
+            document.getElementById('selectedLocation').textContent = coords;
+            document.getElementById('siteAddress').value = coords;
+        }
+    });
+}
 
 function useCurrentLocation() {
     if (!navigator.geolocation) {
@@ -53,26 +148,6 @@ function useCurrentLocation() {
     );
 }
 
-function searchOnMaps() {
-    const addressInput = document.getElementById('siteAddress');
-    const currentAddress = addressInput.value.trim();
-    
-    // Open Google Maps search
-    let mapsUrl;
-    if (currentAddress) {
-        // Search for existing address
-        mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(currentAddress)}`;
-    } else {
-        // Open general maps
-        mapsUrl = 'https://www.google.com/maps/';
-    }
-    
-    // Show instructions
-    alert('🗺️ Opening Google Maps...\n\nInstructions:\n1. Search for your construction site location\n2. Click on the location marker\n3. Copy the full address from Google Maps\n4. Paste it into the Address field\n\nOr you can right-click on the map and select "What\'s here?" to get coordinates.');
-    
-    window.open(mapsUrl, '_blank');
-}
-
 // ==================== SITE CRUD OPERATIONS ====================
 
 function loadSites() {
@@ -102,7 +177,7 @@ function loadSites() {
             <div class="site-actions">
                 <button class="btn-small" onclick="editSite('${site.id}')">✏️ Edit</button>
                 <button class="btn-small" onclick="deleteSite('${site.id}')">🗑️ Delete</button>
-                <button class="btn-small" onclick="viewSiteOnMap('${site.address}')">🗺️ View Map</button>
+                <button class="btn-small" onclick="viewSiteOnMap('${site.id}')">🗺️ View Map</button>
             </div>
         </div>
     `).join('');
@@ -124,11 +199,25 @@ function saveSite(event) {
     
     const siteId = document.getElementById('siteId').value;
     const sites = JSON.parse(localStorage.getItem('sites') || '[]');
+    const address = document.getElementById('siteAddress').value;
+    
+    // Extract coordinates from address if it contains "Lat:" and "Lon:"
+    let coordinates = null;
+    const latMatch = address.match(/Lat:\s*([-\d.]+)/i);
+    const lonMatch = address.match(/Lon:\s*([-\d.]+)/i);
+    
+    if (latMatch && lonMatch) {
+        coordinates = {
+            latitude: parseFloat(latMatch[1]),
+            longitude: parseFloat(lonMatch[1])
+        };
+    }
     
     const siteData = {
         id: siteId || Date.now().toString(),
         name: document.getElementById('siteName').value,
-        address: document.getElementById('siteAddress').value,
+        address: address,
+        coordinates: coordinates,
         manager: document.getElementById('siteManager').value,
         phone: document.getElementById('sitePhone').value,
         schedule: document.getElementById('siteSchedule').value,
@@ -149,6 +238,31 @@ function saveSite(event) {
     }
     
     localStorage.setItem('sites', JSON.stringify(sites));
+    
+    // Also update allSites for compatibility
+    const allSites = JSON.parse(localStorage.getItem('allSites') || '[]');
+    const allSiteIndex = allSites.findIndex(s => s.id === siteData.id);
+    
+    if (allSiteIndex !== -1) {
+        allSites[allSiteIndex] = {
+            id: siteData.id,
+            name: siteData.name,
+            address: siteData.address,
+            coordinates: siteData.coordinates,
+            status: siteData.status
+        };
+    } else {
+        allSites.push({
+            id: siteData.id,
+            name: siteData.name,
+            address: siteData.address,
+            coordinates: siteData.coordinates,
+            status: siteData.status
+        });
+    }
+    
+    localStorage.setItem('allSites', JSON.stringify(allSites));
+    
     closeSiteModal();
     loadSites();
     alert('✅ Site saved successfully!');
@@ -189,9 +303,29 @@ function deleteSite(siteId) {
     alert('🗑️ Site deleted successfully!');
 }
 
-function viewSiteOnMap(address) {
-    const encodedAddress = encodeURIComponent(address);
-    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+function viewSiteOnMap(siteId) {
+    const sites = JSON.parse(localStorage.getItem('sites') || '[]');
+    const site = sites.find(s => s.id === siteId);
+    
+    if (!site) {
+        alert('Site not found');
+        return;
+    }
+    
+    let googleMapsUrl;
+    
+    // Check if site has coordinates
+    if (site.coordinates && site.coordinates.latitude && site.coordinates.longitude) {
+        // Use exact coordinates
+        const lat = site.coordinates.latitude;
+        const lng = site.coordinates.longitude;
+        googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+    } else {
+        // Fallback to address search
+        const encodedAddress = encodeURIComponent(site.address);
+        googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+    }
+    
     window.open(googleMapsUrl, '_blank');
 }
 
@@ -327,7 +461,7 @@ function loadWorkerSiteHistory(username) {
 }
 
 function openWorkerGoogleMaps() {
-    const address = window.currentSiteAddress || 'Constructorilor St. 45, Chișinău, Moldova';
+    const address = window.currentSiteAddress || 'Construction Site, Dublin 1, Ireland';
     const encodedAddress = encodeURIComponent(address);
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
     window.open(googleMapsUrl, '_blank');

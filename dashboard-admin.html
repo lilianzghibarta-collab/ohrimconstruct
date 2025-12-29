@@ -9,9 +9,10 @@
     <meta name="theme-color" content="#eaa350">
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="manifest" href="manifest.json">
-    <title data-translate="dash_admin_title">Admin Dashboard - Ohrim Construct</title>
+    <title data-translate="dash_admin_title">Admin Dashboard - OHR Build</title>
     <link rel="stylesheet" href="styles.css?v=3.2">
     <link rel="stylesheet" href="dashboard.css?v=4.7">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 </head>
 <body>
     <div class="language-dropdown" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
@@ -44,7 +45,7 @@
         <aside class="sidebar admin">
             <div class="sidebar-header">
                 <a href="index.html">
-                    <img src="logo.png" alt="OHRIM" style="width: 90%; max-width: 400px; margin-bottom: 10px; cursor: pointer;">
+                    <img src="logo.png" alt="OHR BUILD" style="width: 90%; max-width: 400px; margin-bottom: 10px; cursor: pointer;">
                 </a>
                 <p>Administrator</p>
             </div>
@@ -101,55 +102,55 @@
                     <div class="stat-card">
                         <div class="stat-icon">👷</div>
                         <div class="stat-info">
-                            <h3>Total Muncitori</h3>
-                            <p class="stat-number">24</p>
-                            <small class="stat-change positive">+2 față de luna trecută</small>
+                            <h3>Total Workers</h3>
+                            <p class="stat-number" id="totalWorkersCount">0</p>
+                            <small class="stat-change positive" id="totalWorkersChange">Loading...</small>
                         </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">🏗️</div>
                         <div class="stat-info">
-                            <h3>Șantiere Active</h3>
-                            <p class="stat-number">5</p>
-                            <small class="stat-change">3 în progres, 2 în finalizare</small>
+                            <h3>Active Sites</h3>
+                            <p class="stat-number" id="activeSitesCount">0</p>
+                            <small class="stat-change" id="activeSitesChange">Loading...</small>
                         </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">✅</div>
                         <div class="stat-info">
-                            <h3>Prezență Astăzi</h3>
-                            <p class="stat-number">22/24</p>
-                            <small class="stat-change positive">91.7% prezență</small>
+                            <h3>Attendance Today</h3>
+                            <p class="stat-number" id="attendanceTodayCount">0/0</p>
+                            <small class="stat-change positive" id="attendanceTodayChange">Loading...</small>
                         </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">📝</div>
                         <div class="stat-info">
-                            <h3>Cereri în Așteptare</h3>
-                            <p class="stat-number">7</p>
-                            <small class="stat-change warning">Necesită acțiune</small>
+                            <h3>Pending Requests</h3>
+                            <p class="stat-number" id="pendingRequestsCount">0</p>
+                            <small class="stat-change warning" id="pendingRequestsChange">Loading...</small>
                         </div>
                     </div>
                 </div>
                 
                 <div class="dashboard-grid">
                     <div class="dashboard-card">
-                        <h3>📊 Activitate Șantiere</h3>
+                        <h3>📊 Site Activity</h3>
                         <div class="site-progress-list">
                             <div class="progress-item">
-                                <span>Bloc Rezidențial A3</span>
+                                <span>Residential Block A3</span>
                                 <div class="progress-bar">
                                     <div class="progress-fill" style="width: 75%">75%</div>
                                 </div>
                             </div>
                             <div class="progress-item">
-                                <span>Casă Individuală Durlești</span>
+                                <span>Individual House Durlesti</span>
                                 <div class="progress-bar">
                                     <div class="progress-fill" style="width: 45%">45%</div>
                                 </div>
                             </div>
                             <div class="progress-item">
-                                <span>Renovare Complex B</span>
+                                <span>Renovation Complex B</span>
                                 <div class="progress-bar">
                                     <div class="progress-fill" style="width: 90%">90%</div>
                                 </div>
@@ -158,12 +159,12 @@
                     </div>
                     
                     <div class="dashboard-card">
-                        <h3>⚠️ Alerte & Notificări</h3>
+                        <h3>⚠️ Alerts & Notifications</h3>
                         <ul class="alerts-list">
-                            <li class="alert warning">🔧 Echipament EQ-2301 necesită mentenanță</li>
-                            <li class="alert info">📝 7 cereri de concediu în așteptare</li>
-                            <li class="alert success">✅ Pontaj complet pentru 26 Dec</li>
-                            <li class="alert warning">⏰ 2 muncitori întârziați astăzi</li>
+                            <li class="alert warning">🔧 Equipment EQ-2301 requires maintenance</li>
+                            <li class="alert info">📝 7 leave requests pending</li>
+                            <li class="alert success">✅ Complete attendance for 26 Dec</li>
+                            <li class="alert warning">⏰ 2 workers late today</li>
                         </ul>
                     </div>
                 </div>
@@ -187,34 +188,32 @@
                 <div class="attendance-summary">
                     <div class="summary-card">
                         <h4>Present Today</h4>
-                        <p class="big-number">22/24</p>
-                        <small>91.7%</small>
+                        <p class="big-number" id="presentTodayCount">0/0</p>
+                        <small id="presentTodayPercent">0%</small>
                     </div>
                     <div class="summary-card">
                         <h4>Total Hours Today</h4>
-                        <p class="big-number">176h</p>
+                        <p class="big-number" id="totalHoursToday">0h</p>
                         <small>So far</small>
                     </div>
                     <div class="summary-card">
                         <h4>Late Arrivals</h4>
-                        <p class="big-number warning">2</p>
-                        <small>Over 15 min</small>
+                        <p class="big-number warning" id="lateArrivalsCount">0</p>
+                        <small>After 8:30 AM</small>
                     </div>
                     <div class="summary-card">
                         <h4>Absences</h4>
-                        <p class="big-number">2</p>
+                        <p class="big-number" id="absencesCount">0</p>
                         <small>No clock in</small>
                     </div>
                 </div>
                 
                 <div class="attendance-filters">
-                    <input type="date" class="filter-input" value="2025-12-27">
-                    <select class="filter-select">
-                        <option>All Sites</option>
-                        <option>Residential Block A3</option>
-                        <option>House Durlești</option>
+                    <input type="date" class="filter-input" id="attendanceDate">
+                    <select class="filter-select" id="siteFilter">
+                        <option value="">All Sites</option>
                     </select>
-                    <button class="btn-secondary">📊 Export Report</button>
+                    <button class="btn-secondary" onclick="exportAttendanceReport()">📊 Export Report</button>
                 </div>
                 
                 <table class="data-table">
@@ -224,7 +223,7 @@
                             <th>Site</th>
                             <th>Clock In</th>
                             <th>Clock Out</th>
-                            <th>Breaks</th>
+                            <th>Break</th>
                             <th>Total Hours</th>
                             <th>Status</th>
                             <th>Location</th>
@@ -264,17 +263,32 @@
                         
                         <label>Address * (for Google Maps)</label>
                         <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                            <input type="text" id="siteAddress" required placeholder="e.g., Constructorilor St. 45, Chișinău, Moldova" style="flex: 1;">
+                            <input type="text" id="siteAddress" required placeholder="e.g., 45 Construction Road, Dublin 1, Ireland" style="flex: 1;">
                             <button type="button" class="btn-small" onclick="useCurrentLocation()" title="Use device location">📍 Current</button>
-                            <button type="button" class="btn-small" onclick="searchOnMaps()" title="Search on Google Maps">🔍 Search</button>
+                            <button type="button" class="btn-small" onclick="toggleMapPicker()" title="Pick location on map">🔍 Map Picker</button>
                         </div>
-                        <small style="color: #fcd787; font-size: 0.85em;">Tip: Click "Current" to use your location, or "Search" to find on Google Maps</small>
+                        
+                        <!-- Map Picker Container -->
+                        <div id="mapPickerContainer" style="display: none; margin-bottom: 20px;">
+                            <div style="background: #1a1a1a; border: 2px solid #eaa350; border-radius: 8px; padding: 15px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                    <span style="color: #fcd787; font-weight: 600;">🗺️ Click on the map to select location</span>
+                                    <button type="button" class="btn-small" onclick="closeMapPicker()" style="background: #dc3545;">✕ Close</button>
+                                </div>
+                                <div id="mapPicker" style="height: 400px; width: 100%; border-radius: 5px;"></div>
+                                <div style="margin-top: 10px; color: #fcd787; font-size: 0.9em;">
+                                    <strong>Selected:</strong> <span id="selectedLocation">Click on map to select</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <small style="color: #fcd787; font-size: 0.85em;">Tip: Click "Current" to use your location, or "Map Picker" to select on map</small>
                         
                         <label>Site Manager</label>
                         <input type="text" id="siteManager" placeholder="e.g., Ion Popescu">
                         
                         <label>Phone</label>
-                        <input type="tel" id="sitePhone" placeholder="+373 69 123 456">
+                        <input type="tel" id="sitePhone" placeholder="+353 1 234 5678">
                         
                         <label>Schedule</label>
                         <input type="text" id="siteSchedule" placeholder="08:00 - 17:00">
@@ -314,29 +328,6 @@
                     </form>
                 </div>
             </div>
-                            <button class="btn-small">📊 Raport</button>
-                        </div>
-                    </div>
-                    
-                    <div class="site-card finishing">
-                        <div class="site-header">
-                            <h4>Renovare Complex B</h4>
-                            <span class="site-status finishing">🟡 Finalizare</span>
-                        </div>
-                        <p>📍 Bd. Dacia 12, Chișinău</p>
-                        <p>👷 Muncitori: 6 | 👨‍💼 Șef: Maria Pavel</p>
-                        <p>📅 Început: 01 Oct 2025 | Deadline: 31 Dec 2025</p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 90%">90%</div>
-                        </div>
-                        <div class="site-actions">
-                            <button class="btn-small">👁️ Vezi Detalii</button>
-                            <button class="btn-small">✏️ Editează</button>
-                            <button class="btn-small">📊 Raport</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
             
             <!-- Tasks Admin Section -->
             <section id="tasks-admin" class="content-section">
@@ -352,25 +343,25 @@
             <!-- Equipment Admin Section -->
             <section id="equipment-admin" class="content-section">
                 <div class="section-header">
-                    <h3>🔧 Gestionare Echipamente</h3>
-                    <button class="btn-primary">➕ Echipament Nou</button>
+                    <h3 class="gold-title">🔧 Equipment Management</h3>
+                    <button class="btn-primary">➕ New Equipment</button>
                 </div>
                 
                 <div class="equipment-stats">
                     <div class="eq-stat-card">
-                        <h4>Total Echipamente</h4>
+                        <h4>Total Equipment</h4>
                         <p class="big-number">85</p>
                     </div>
                     <div class="eq-stat-card">
-                        <h4>În Uz</h4>
+                        <h4>In Use</h4>
                         <p class="big-number">62</p>
                     </div>
                     <div class="eq-stat-card">
-                        <h4>Disponibile</h4>
+                        <h4>Available</h4>
                         <p class="big-number">18</p>
                     </div>
                     <div class="eq-stat-card warning">
-                        <h4>Mentenanță</h4>
+                        <h4>Maintenance</h4>
                         <p class="big-number">5</p>
                     </div>
                 </div>
@@ -378,23 +369,23 @@
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th>ID Echipament</th>
-                            <th>Nume</th>
-                            <th>Categorie</th>
-                            <th>Asignat către</th>
-                            <th>Locație</th>
+                            <th>Equipment ID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Assigned To</th>
+                            <th>Location</th>
                             <th>Status</th>
-                            <th>Acțiuni</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>EQ-2301</td>
-                            <td>Ciocan Pneumatic</td>
-                            <td>Unelte Electrice</td>
+                            <td>Pneumatic Hammer</td>
+                            <td>Power Tools</td>
                             <td>Vasile Popescu</td>
-                            <td>Bloc A3</td>
-                            <td><span class="status-badge warning">⚠️ Mentenanță</span></td>
+                            <td>Block A3</td>
+                            <td><span class="status-badge warning">⚠️ Maintenance</span></td>
                             <td>
                                 <button class="btn-small">✏️</button>
                                 <button class="btn-small">🔧</button>
@@ -402,11 +393,11 @@
                         </tr>
                         <tr>
                             <td>EQ-2315</td>
-                            <td>Sfredel Electric</td>
-                            <td>Unelte Electrice</td>
+                            <td>Electric Drill</td>
+                            <td>Power Tools</td>
                             <td>Vasile Popescu</td>
-                            <td>Bloc A3</td>
-                            <td><span class="status-badge active">🟢 În uz</span></td>
+                            <td>Block A3</td>
+                            <td><span class="status-badge active">🟢 In Use</span></td>
                             <td>
                                 <button class="btn-small">✏️</button>
                                 <button class="btn-small">↩️</button>
@@ -414,11 +405,11 @@
                         </tr>
                         <tr>
                             <td>EQ-2401</td>
-                            <td>Vestă de Protecție</td>
-                            <td>Echipament Protecție</td>
+                            <td>Safety Vest</td>
+                            <td>Safety Equipment</td>
                             <td>-</td>
-                            <td>Depozit</td>
-                            <td><span class="status-badge success">✅ Disponibil</span></td>
+                            <td>Warehouse</td>
+                            <td><span class="status-badge success">✅ Available</span></td>
                             <td>
                                 <button class="btn-small">✏️</button>
                                 <button class="btn-small">📤</button>
@@ -440,7 +431,15 @@
             <section id="payroll" class="content-section">
                 <div class="section-header">
                     <h3>💰 Payroll Management</h3>
-                    <button class="btn-primary" id="generatePayrollBtn">💰 Generate Payroll</button>
+                    <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                        <div style="display: flex; gap: 10px; align-items: center; background: #1a1a1a; padding: 10px 20px; border-radius: 25px; border: 2px solid #eaa350;">
+                            <span style="color: #fcd787; font-weight: 600;">Payment Mode:</span>
+                            <button id="weeklyModeBtn" class="payment-mode-btn active" onclick="switchPayrollMode('weekly')" style="background: #eaa350; color: #000; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 600;">📅 Weekly</button>
+                            <button id="monthlyModeBtn" class="payment-mode-btn" onclick="switchPayrollMode('monthly')" style="background: #2a2a2a; color: #fcd787; border: 1px solid #eaa350; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 600;">📆 Monthly</button>
+                        </div>
+                        <button class="btn-primary" id="generatePayrollBtn">💰 Generate Payroll</button>
+                        <button class="btn-secondary" id="refreshPayrollBtn" onclick="loadPayroll()" style="background: #2a2a2a; color: #fcd787; border: 2px solid #eaa350;">🔄 Refresh</button>
+                    </div>
                 </div>
                 <div id="payrollContainer">
                     <p>Loading payroll...</p>
@@ -450,36 +449,36 @@
             <!-- Reports Section -->
             <section id="reports" class="content-section">
                 <div class="section-header">
-                    <h3>📈 Rapoarte & Analize</h3>
+                    <h3>📈 Reports & Analytics</h3>
                 </div>
                 
                 <div class="reports-grid">
                     <div class="report-card" onclick="generateReport('attendance')">
                         <div class="report-icon">📊</div>
-                        <h4>Raport Pontaj Lunar</h4>
-                        <p>Prezență și ore lucrate pe muncitori</p>
-                        <button class="btn-primary" onclick="event.stopPropagation();">📥 Generează</button>
+                        <h4>Monthly Attendance Report</h4>
+                        <p>Presence and hours worked per worker</p>
+                        <button class="btn-primary" onclick="event.stopPropagation();">📥 Generate</button>
                     </div>
                     
                     <div class="report-card" onclick="generateReport('sites')">
                         <div class="report-icon">🏗️</div>
-                        <h4>Raport Progres Șantiere</h4>
-                        <p>Status și stadii realizare proiecte</p>
-                        <button class="btn-primary" onclick="event.stopPropagation();">📥 Generează</button>
+                        <h4>Site Progress Report</h4>
+                        <p>Status and completion stages of projects</p>
+                        <button class="btn-primary" onclick="event.stopPropagation();">📥 Generate</button>
                     </div>
                     
                     <div class="report-card" onclick="generateReport('payroll')">
                         <div class="report-icon">💰</div>
-                        <h4>Raport Financiar</h4>
-                        <p>Salarii, bonusuri și cheltuieli</p>
-                        <button class="btn-primary" onclick="event.stopPropagation();">📥 Generează</button>
+                        <h4>Financial Report</h4>
+                        <p>Salaries, bonuses and expenses</p>
+                        <button class="btn-primary" onclick="event.stopPropagation();">📥 Generate</button>
                     </div>
                     
                     <div class="report-card" onclick="generateReport('equipment')">
                         <div class="report-icon">🔧</div>
-                        <h4>Raport Echipamente</h4>
-                        <p>Inventar și stare echipamente</p>
-                        <button class="btn-primary" onclick="event.stopPropagation();">📥 Generează</button>
+                        <h4>Equipment Report</h4>
+                        <p>Inventory and equipment status</p>
+                        <button class="btn-primary" onclick="event.stopPropagation();">📥 Generate</button>
                     </div>
                     
                     <div class="report-card" onclick="generateReport('productivity')">
@@ -517,6 +516,7 @@
     
     <script src="translations.js"></script>
     <script src="demo-data.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="admin-features.js"></script>
     <script src="site-management.js"></script>
     <script src="dashboard-admin.js"></script>

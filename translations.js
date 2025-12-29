@@ -1,4 +1,4 @@
-// Multi-language translations for OhrimConstruct website
+// Multi-language translations for OHR Build website
 
 const translations = {
     en: {
@@ -16,7 +16,7 @@ const translations = {
         
         // About Section
         about_title: "About Us",
-        about_p1: "OhrimConstruct is a construction company with solid experience in the field, specializing in the execution of civil and industrial construction works. Our team of dedicated professionals combines technical expertise with attention to detail, ensuring that every project is completed to the highest quality standards.",
+        about_p1: "OHR Build is a construction company with solid experience in the field, specializing in the execution of civil and industrial construction works. Our team of dedicated professionals combines technical expertise with attention to detail, ensuring that every project is completed to the highest quality standards.",
         about_p2: "From turnkey houses to complex renovations and exterior arrangements, we pride ourselves on our diverse portfolio and customer satisfaction. We use only superior quality materials and modern technologies to guarantee the durability and efficiency of every construction. Transparency, professionalism, and meeting deadlines are the core values that guide us in every project.",
         
         // Services Section
@@ -48,11 +48,17 @@ const translations = {
         contact_send: "Send",
         contact_success: "✓ Message sent successfully! We will respond as soon as possible.",
         
+        // Clock In/Out Messages
+        clockin_success_title: "✅ Successfully Clocked In",
+        clockin_success_message: "You clocked in at {time} for <strong>{site}</strong>. Have a productive day!",
+        clockout_success_title: "✅ Successfully Clocked Out",
+        clockout_success_message: "Work hours: {start} - {end}<br>Total: <strong>{hours}h</strong> (30 min break deducted)<br><br>Your timesheet has been sent to admin.",
+        
         // Footer
         footer_rights: "All rights reserved.",
         
         // Login Page
-        login_title: "Login - Ohrim Construct Portal",
+        login_title: "Login - OHR Build Portal",
         login_subtitle: "Employee & Administration Portal",
         login_username: "👤 Username",
         login_password: "🔒 Password",
@@ -107,7 +113,7 @@ const translations = {
         
         // Secțiunea Despre
         about_title: "Despre Noi",
-        about_p1: "OhrimConstruct este o companie de construcții cu experiență solidă în domeniu, specializată în execuția lucrărilor de construcții civile și industriale. Echipa noastră de profesioniști dedicați combină expertiza tehnică cu atenția la detalii, asigurându-ne că fiecare proiect este finalizat conform celor mai înalte standarde de calitate.",
+        about_p1: "OHR Build este o companie de construcții cu experiență solidă în domeniu, specializată în execuția lucrărilor de construcții civile și industriale. Echipa noastră de profesioniști dedicați combină expertiza tehnică cu atenția la detalii, asigurându-ne că fiecare proiect este finalizat conform celor mai înalte standarde de calitate.",
         about_p2: "De la case la cheie până la renovări complexe și amenajări exterioare, ne mândrim cu portofoliul nostru diversificat și satisfacția clienților. Folosim doar materiale de calitate superioară și tehnologii moderne pentru a garanta durabilitatea și eficiența fiecărei construcții. Transparența, profesionalismul și respectarea termenelor sunt valorile centrale care ne ghidează în fiecare proiect.",
         
         // Secțiunea Servicii
@@ -139,11 +145,17 @@ const translations = {
         contact_send: "Trimite",
         contact_success: "✓ Mesaj trimis cu succes! Vă vom răspunde cât mai curând posibil.",
         
+        // Mesaje Clock In/Out
+        clockin_success_title: "✅ Pontaj Intrare Reușit",
+        clockin_success_message: "Ai pontat intrarea la ora {time} pentru <strong>{site}</strong>. O zi productivă!",
+        clockout_success_title: "✅ Pontaj Ieșire Reușit",
+        clockout_success_message: "Ore lucrate: {start} - {end}<br>Total: <strong>{hours}h</strong> (30 min pauză deduse)<br><br>Pontajul tău a fost trimis la administrator.",
+        
         // Footer
         footer_rights: "Toate drepturile rezervate.",
         
         // Pagina Login
-        login_title: "Autentificare - Portal Ohrim Construct",
+        login_title: "Autentificare - Portal OHR Build",
         login_subtitle: "Portal Angajați & Administrare",
         login_username: "👤 Utilizator",
         login_password: "🔒 Parolă",
@@ -198,7 +210,7 @@ const translations = {
         
         // Секция О нас
         about_title: "О нас",
-        about_p1: "OhrimConstruct - это строительная компания с солидным опытом в области, специализирующаяся на выполнении гражданских и промышленных строительных работ. Наша команда преданных профессионалов сочетает техническую экспертизу с вниманием к деталям, гарантируя завершение каждого проекта в соответствии с высочайшими стандартами качества.",
+        about_p1: "OHR Build - это строительная компания с солидным опытом в области, специализирующаяся на выполнении гражданских и промышленных строительных работ. Наша команда преданных профессионалов сочетает техническую экспертизу с вниманием к деталям, гарантируя завершение каждого проекта в соответствии с высочайшими стандартами качества.",
         about_p2: "От домов под ключ до сложных ремонтов и внешних благоустройств, мы гордимся разнообразным портфолио и удовлетворенностью клиентов. Мы используем только высококачественные материалы и современные технологии для гарантии долговечности и эффективности каждого строительства. Прозрачность, профессионализм и соблюдение сроков - это основные ценности, которые направляют нас в каждом проекте.",
         
         // Секция Услуги
@@ -230,11 +242,17 @@ const translations = {
         contact_send: "Отправить",
         contact_success: "✓ Сообщение успешно отправлено! Мы ответим вам как можно скорее.",
         
+        // Сообщения о входе/выходе
+        clockin_success_title: "✅ Вход зафиксирован успешно",
+        clockin_success_message: "Вы вошли в {time} на <strong>{site}</strong>. Продуктивного дня!",
+        clockout_success_title: "✅ Выход зафиксирован успешно",
+        clockout_success_message: "Рабочие часы: {start} - {end}<br>Всего: <strong>{hours}ч</strong> (30 мин перерыв вычтен)<br><br>Ваш табель отправлен администратору.",
+        
         // Footer
         footer_rights: "Все права защищены.",
         
         // Страница входа
-        login_title: "Вход - Портал Ohrim Construct",
+        login_title: "Вход - Портал OHR Build",
         login_subtitle: "Портал сотрудников и администрации",
         login_username: "👤 Имя пользователя",
         login_password: "🔒 Пароль",

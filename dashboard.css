@@ -1,5 +1,37 @@
 /* Dashboard Styles */
 
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 /* Modal Styles */
 .modal-overlay {
     position: fixed;
@@ -341,6 +373,16 @@
 .content-section.active {
     display: block;
     animation: fadeIn 0.3s;
+}
+
+.content-section > h3 {
+    color: #fcd787;
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #eaa350;
+    text-shadow: 0 2px 8px rgba(234, 163, 80, 0.3);
 }
 
 @keyframes fadeIn {
@@ -848,11 +890,12 @@
 
 .eq-info h4 {
     margin-bottom: 5px;
-    color: #5c4938;
+    color: #fcd787;
+    font-weight: 600;
 }
 
 .eq-info p {
-    color: #666;
+    color: #fcd787;
     font-size: 0.9em;
 }
 
@@ -930,14 +973,15 @@
 }
 
 .salary-card h4 {
-    color: #666;
+    color: #fcd787;
     margin-bottom: 15px;
+    font-weight: 600;
 }
 
 .salary-amount {
     font-size: 2.2em;
     font-weight: bold;
-    color: #5c4938;
+    color: #fcd787;
     margin: 10px 0;
 }
 
@@ -946,7 +990,8 @@
 }
 
 .salary-card small {
-    color: #999;
+    color: #fcd787;
+    opacity: 0.8;
 }
 
 .salary-history {
@@ -958,7 +1003,8 @@
 
 .salary-history h4 {
     margin-bottom: 20px;
-    color: #5c4938;
+    color: #fcd787;
+    font-weight: 600;
 }
 
 /* Admin Dashboard Specific */
@@ -1226,8 +1272,9 @@
 }
 
 .eq-stat-card h4 {
-    color: #666;
+    color: #fcd787;
     margin-bottom: 10px;
+    font-weight: 600;
 }
 
 /* Requests Stats */
@@ -1519,11 +1566,18 @@
 }
 
 .equipment-card {
-    background: white;
+    background: #1a1a1a;
+    border: 2px solid #eaa350;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(234, 163, 80, 0.3);
     text-align: center;
+}
+
+.equipment-card h4,
+.equipment-card h3,
+.equipment-card p {
+    color: #fcd787 !important;
 }
 
 .eq-icon {
@@ -1550,6 +1604,36 @@
 }
 
 .badge.poor {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.badge.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.badge.in-progress {
+    background: #cfe2ff;
+    color: #084298;
+}
+
+.badge.completed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.badge.available {
+    background: #d4edda;
+    color: #155724;
+}
+
+.badge.assigned {
+    background: #cfe2ff;
+    color: #084298;
+}
+
+.badge.maintenance {
     background: #f8d7da;
     color: #721c24;
 }
@@ -1631,15 +1715,22 @@
 }
 
 .payroll-card {
-    background: white;
+    background: #1a1a1a;
+    border: 2px solid #eaa350;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(234, 163, 80, 0.3);
 }
 
 .payroll-card h4 {
-    color: #5c4938;
+    color: #fcd787;
     margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.payroll-card p,
+.payroll-card strong {
+    color: #fcd787 !important;
 }
 
 /* Modal Forms */
@@ -1842,6 +1933,9 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 100%;
 }
 
 .admin-task-card {
@@ -1849,11 +1943,46 @@
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .admin-task-card h4 {
     color: #5c4938;
     margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.admin-task-card p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.admin-task-card .status-badge {
+    margin: 10px 0;
+}
+
+.admin-task-card button {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+/* Mobile optimization for task cards */
+@media (max-width: 768px) {
+    .admin-tasks-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .admin-task-card {
+        min-height: auto;
+        padding: 15px;
+    }
 }
 
 /* Reports Grid */

@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#eaa350">
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="manifest" href="manifest.json">
-    <title data-translate="dash_worker_title">Dashboard Muncitor - Ohrim Construct</title>
+    <title data-translate="dash_worker_title">Dashboard Muncitor - OHR Build</title>
     <link rel="stylesheet" href="styles.css?v=3.2">
     <link rel="stylesheet" href="dashboard.css?v=4.7">
 </head>
@@ -44,7 +44,7 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <a href="index.html">
-                    <img src="logo.png" alt="OHRIM" style="width: 90%; max-width: 400px; margin-bottom: 10px; cursor: pointer;">
+                    <img src="logo.png" alt="OHR BUILD" style="width: 90%; max-width: 400px; margin-bottom: 10px; cursor: pointer;">
                 </a>
                 <p id="workerName">Muncitor</p>
             </div>
@@ -132,7 +132,7 @@
                         <small>completed</small>
                     </div>
                     <div class="info-card">
-                        <h3>💰 Estimated Salary</h3>
+                        <h3 class="gold-title">💰 Estimated Salary</h3>
                         <p class="big-number" id="estimatedSalaryOverview">0 EUR</p>
                         <small>current month</small>
                     </div>
@@ -216,9 +216,9 @@
                     <h3 class="gold-title">📍 Current Site</h3>
                     <div class="location-card">
                         <h4>Residential Block A3</h4>
-                        <p>📍 Constructorilor St. 45, Chișinău</p>
+                        <p>📍 45 Construction Road, Dublin 1</p>
                         <p>👷 Site Manager: Ion Popescu</p>
-                        <p>📞 Phone: +373 69 123 456</p>
+                        <p>📞 Phone: +353 1 234 5678</p>
                         <p>⏰ Schedule: 08:00 - 17:00</p>
                         <button class="btn-primary" onclick="openWorkerGoogleMaps()">🗺️ Open in Maps</button>
                     </div>
@@ -246,9 +246,19 @@
             <!-- Documents Section -->
             <section id="documents" class="content-section">
                 <div class="section-header">
-                    <h3>📄 My Documents</h3>
+                    <h3 class="gold-title">📄 My Documents</h3>
                     <button class="btn-primary" id="uploadDocBtn">📤 Upload Document</button>
                 </div>
+                
+                <!-- Bank Details Section -->
+                <div style="background: #1a1a1a; border: 2px solid #eaa350; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+                    <h4 style="color: #fcd787; margin-bottom: 20px; font-size: 1.3em;">🏦 Bank Account Details for Salary</h4>
+                    <div id="bankDetailsDisplay" style="margin-bottom: 20px;">
+                        <p style="color: #fcd787;">No bank details provided yet. Please add your bank account information to receive salary payments.</p>
+                    </div>
+                    <button class="btn-primary" id="addBankDetailsBtn" style="width: 100%;">💳 Add/Update Bank Details</button>
+                </div>
+                
                 <div id="documentsContainer" class="documents-grid">
                     <p>Loading documents...</p>
                 </div>
@@ -256,7 +266,7 @@
             
             <!-- Tasks Section -->
             <section id="tasks" class="content-section">
-                <h3>✅ Daily Tasks</h3>
+                <h3 class="gold-title">✅ Daily Tasks</h3>
                 <div id="tasksContainer" class="tasks-list">
                     <div class="task-item completed">
                         <input type="checkbox" checked>
@@ -303,7 +313,7 @@
             
             <!-- Equipment Section -->
             <section id="equipment" class="content-section">
-                <h3>🔧 Assigned Equipment</h3>
+                <h3 class="gold-title">🔧 Assigned Equipment</h3>
                 <div id="equipmentContainer" class="equipment-grid">
                     <p>Loading equipment...</p>
                 </div>
@@ -312,7 +322,7 @@
             <!-- Requests Section -->
             <section id="requests" class="content-section">
                 <div class="section-header">
-                    <h3>📝 Requests & Leaves</h3>
+                    <h3 class="gold-title">📝 Requests & Leaves</h3>
                     <button class="btn-primary" id="newRequestBtn">➕ New Request</button>
                 </div>
                 <div id="requestsContainer">
@@ -341,7 +351,7 @@
             
             <!-- Salary Section -->
             <section id="salary" class="content-section">
-                <h3>💰 Salary & Bonuses</h3>
+                <h3 class="gold-title">💰 Salary & Bonuses</h3>
                 <div id="salaryContainer">
                     <p>Loading salary information...</p>
                 </div>

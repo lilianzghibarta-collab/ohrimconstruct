@@ -1,6 +1,6 @@
 {
-  "name": "OHRIM CONSTRUCT",
-  "short_name": "OhrimConstruct",
+  "name": "OHR BUILD",
+  "short_name": "OHR Build",
   "description": "Construction Management Portal - Employee & Administration",
   "start_url": "/index.html",
   "display": "standalone",

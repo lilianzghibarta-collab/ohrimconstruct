@@ -4,6 +4,11 @@
 function initializeDemoData() {
     // Only initialize if not already done
     if (localStorage.getItem('demoDataInitialized')) {
+        // Check if sites exist, if not, add them
+        const existingSites = localStorage.getItem('allSites');
+        if (!existingSites || JSON.parse(existingSites).length === 0) {
+            initializeDemoSites();
+        }
         return;
     }
     
@@ -42,6 +47,63 @@ function initializeDemoData() {
         }
     ];
     localStorage.setItem('tasks', JSON.stringify(tasks));
+    
+    // Demo Construction Sites
+    const sites = [
+        {
+            id: 'site-001',
+            name: 'Residential Complex Aurora',
+            address: 'Str. Florilor 45, Chișinău',
+            status: 'active',
+            manager: 'Ion Popescu',
+            startDate: '2025-01-15',
+            estimatedCompletion: '2026-06-30',
+            coordinates: {
+                latitude: 47.0245,
+                longitude: 28.8322
+            }
+        },
+        {
+            id: 'site-002',
+            name: 'Office Building Central Plaza',
+            address: 'Bd. Ștefan cel Mare 123, Chișinău',
+            status: 'active',
+            manager: 'Maria Ionescu',
+            startDate: '2025-03-01',
+            estimatedCompletion: '2025-12-31',
+            coordinates: {
+                latitude: 47.0275,
+                longitude: 28.8356
+            }
+        },
+        {
+            id: 'site-003',
+            name: 'Villa Deluxe Project',
+            address: 'Str. Păcii 78, Cricova',
+            status: 'active',
+            manager: 'Vasile Lupu',
+            startDate: '2025-02-10',
+            estimatedCompletion: '2025-09-15',
+            coordinates: {
+                latitude: 47.1389,
+                longitude: 28.8611
+            }
+        },
+        {
+            id: 'site-004',
+            name: 'Shopping Mall Expansion',
+            address: 'Str. Armenească 33, Chișinău',
+            status: 'active',
+            manager: 'Elena Dumitru',
+            startDate: '2025-04-01',
+            estimatedCompletion: '2026-03-31',
+            coordinates: {
+                latitude: 47.0156,
+                longitude: 28.8289
+            }
+        }
+    ];
+    localStorage.setItem('allSites', JSON.stringify(sites));
     
     // Demo Equipment
     const equipment = [
@@ -157,4 +219,64 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeDemoData);
 } else {
     initializeDemoData();
+}
+
+// Separate function to initialize demo sites
+function initializeDemoSites() {
+    const sites = [
+        {
+            id: 'site-001',
+            name: 'Residential Complex Aurora',
+            address: 'Str. Florilor 45, Chișinău',
+            status: 'active',
+            manager: 'Ion Popescu',
+            startDate: '2025-01-15',
+            estimatedCompletion: '2026-06-30',
+            coordinates: {
+                latitude: 47.0245,
+                longitude: 28.8322
+            }
+        },
+        {
+            id: 'site-002',
+            name: 'Office Building Central Plaza',
+            address: 'Bd. Ștefan cel Mare 123, Chișinău',
+            status: 'active',
+            manager: 'Maria Ionescu',
+            startDate: '2025-03-01',
+            estimatedCompletion: '2025-12-31',
+            coordinates: {
+                latitude: 47.0275,
+                longitude: 28.8356
+            }
+        },
+        {
+            id: 'site-003',
+            name: 'Villa Deluxe Project',
+            address: 'Str. Păcii 78, Cricova',
+            status: 'active',
+            manager: 'Vasile Lupu',
+            startDate: '2025-02-10',
+            estimatedCompletion: '2025-09-15',
+            coordinates: {
+                latitude: 47.1389,
+                longitude: 28.8611
+            }
+        },
+        {
+            id: 'site-004',
+            name: 'Shopping Mall Expansion',
+            address: 'Str. Armenească 33, Chișinău',
+            status: 'active',
+            manager: 'Elena Dumitru',
+            startDate: '2025-04-01',
+            estimatedCompletion: '2026-03-31',
+            coordinates: {
+                latitude: 47.0156,
+                longitude: 28.8289
+            }
+        }
+    ];
+    localStorage.setItem('allSites', JSON.stringify(sites));
+    console.log('✅ Demo sites initialized successfully!');
 }

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Task/Equipment Sync</title>
+</head>
+<body>
+    <h1>Test Task & Equipment Synchronization</h1>
+    <button onclick="createTestTask()">Create Test Task for Worker</button>
+    <button onclick="createTestEquipment()">Create Test Equipment for Worker</button>
+    <button onclick="viewData()">View Data</button>
+    <button onclick="clearData()">Clear Data</button>
+    <pre id="output"></pre>
+    
+    <script>
+        function createTestTask() {
+            const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+            const newTask = {
+                id: Date.now(),
+                title: 'Test Task - Install Windows',
+                description: 'Install all windows on floor 2',
+                location: 'Building A - Floor 2',
+                dueDate: new Date(Date.now() + 86400000).toISOString(),
+                assignedTo: 'worker',
+                status: 'pending',
+                createdDate: new Date().toISOString()
+            };
+            tasks.push(newTask);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            alert('Test task created for worker!');
+            viewData();
+        }
+        
+        function createTestEquipment() {
+            const equipment = JSON.parse(localStorage.getItem('equipment') || '[]');
+            const newEquipment = {
+                id: 'EQ' + Date.now(),
+                name: 'Power Drill',
+                type: 'Tool',
+                condition: 'good',
+                status: 'assigned',
+                assignedTo: 'worker',
+                assignedDate: new Date().toISOString(),
+                location: 'Building A',
+                issues: []
+            };
+            equipment.push(newEquipment);
+            localStorage.setItem('equipment', JSON.stringify(equipment));
+            alert('Test equipment created and assigned to worker!');
+            viewData();
+        }
+        
+        function viewData() {
+            const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+            const equipment = JSON.parse(localStorage.getItem('equipment') || '[]');
+            const output = document.getElementById('output');
+            output.textContent = 'TASKS:\n' + JSON.stringify(tasks, null, 2) + '\n\nEQUIPMENT:\n' + JSON.stringify(equipment, null, 2);
+        }
+        
+        function clearData() {
+            if (confirm('Clear all tasks and equipment?')) {
+                localStorage.removeItem('tasks');
+                localStorage.removeItem('equipment');
+                alert('Data cleared!');
+                viewData();
+            }
+        }
+        
+        viewData();
+    </script>
+</body>
+</html>
