@@ -152,27 +152,27 @@
             <!-- Timesheet Section -->
             <section id="timesheet" class="content-section">
                 <div class="timesheet-controls">
-                    <button class="btn-primary" onclick="clockIn()">⏰ Pontaj Intrare</button>
-                    <button class="btn-secondary" onclick="clockOut()">🏁 Pontaj Ieșire</button>
-                    <button class="btn-secondary" onclick="addBreak()">☕ Pauză</button>
+                    <button class="btn-primary" onclick="clockIn()">⏰ Clock In</button>
+                    <button class="btn-secondary" onclick="clockOut()">🏁 Clock Out</button>
+                    <button class="btn-secondary" onclick="addBreak()">☕ Break</button>
                 </div>
                 
                 <div class="current-shift">
-                    <h3>Tura Curentă</h3>
-                    <p>Intrare: <strong id="clockInTime">08:00</strong></p>
-                    <p>Timp lucrat: <strong id="hoursWorked">6h 30m</strong></p>
-                    <p>Status: <span class="status-badge active">🟢 Activ</span></p>
+                    <h3>Current Shift</h3>
+                    <p>Clock In: <strong id="clockInTime">08:00</strong></p>
+                    <p>Hours Worked: <strong id="hoursWorked">6h 30m</strong></p>
+                    <p>Status: <span class="status-badge active">🟢 Active</span></p>
                 </div>
                 
                 <div class="timesheet-table">
-                    <h3>📅 Pontaj Lunar</h3>
+                    <h3>📅 Monthly Timesheet</h3>
                     <table>
                         <thead>
                             <tr>
-                                <th>Data</th>
-                                <th>Intrare</th>
-                                <th>Ieșire</th>
-                                <th>Total Ore</th>
+                                <th>Date</th>
+                                <th>Clock In</th>
+                                <th>Clock Out</th>
+                                <th>Total Hours</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -182,7 +182,7 @@
                                 <td>08:00</td>
                                 <td>-</td>
                                 <td>6.5h</td>
-                                <td><span class="status-badge active">Lucru</span></td>
+                                <td><span class="status-badge active">Working</span></td>
                             </tr>
                             <tr>
                                 <td>26 Dec 2025</td>
