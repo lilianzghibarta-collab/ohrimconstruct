@@ -568,6 +568,27 @@
     margin-bottom: 20px;
 }
 
+/* Modal Labels - Gold Visible */
+.modal-content label {
+    color: #fcd787 !important;
+    font-weight: 600;
+    font-size: 1em;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.modal-content h2 {
+    color: #fcd787 !important;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(252, 215, 135, 0.3);
+}
+
+.modal-content input::placeholder,
+.modal-content select option {
+    color: #999;
+}
+
 .status-badge.holiday {
     background: #fff3cd;
     color: #856404;
