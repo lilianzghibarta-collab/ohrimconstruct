@@ -6,17 +6,19 @@
 }
 
 :root {
-    --primary-black: #0a0a0a;
-    --secondary-black: #1a1a1a;
-    --dark-gray: #2d2d2d;
-    --light-gray: #f5f5f5;
-    --medium-gray: #e0e0e0;
-    --gold: #d4af37;
-    --gold-light: #f4d03f;
-    --gold-dark: #b8941e;
+    --primary-black: #24150c;
+    --secondary-black: #5c4938;
+    --dark-gray: #5c4938;
+    --light-gray: #f8f6f0;
+    --medium-gray: #b19b75;
+    --gold: #eaa350;
+    --gold-light: #fcd787;
+    --gold-dark: #b19b75;
     --white: #ffffff;
-    --text-dark: #1a1a1a;
-    --text-light: #6c6c6c;
+    --text-dark: #24150c;
+    --text-light: #5c4938;
+    --cream: #f8f6f0;
+    --yellow-light: #fdeeb0;
 }
 
 body {
@@ -34,14 +36,14 @@ body {
 
 /* Header */
 #header {
-    background: linear-gradient(135deg, var(--primary-black) 0%, var(--secondary-black) 100%);
+    background: #000000;
     color: var(--white);
     padding: 1rem 0;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     border-bottom: 2px solid var(--gold);
 }
 
@@ -150,9 +152,10 @@ body {
     position: absolute;
     top: calc(100% + 8px);
     right: 0;
-    background: var(--white);
+    background: #000000;
+    border: 2px solid #eaa350;
     border-radius: 8px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
     min-width: 150px;
     overflow: hidden;
     opacity: 0;
@@ -176,7 +179,7 @@ body {
     padding: 12px 16px;
     background: transparent;
     border: none;
-    color: var(--text-dark);
+    color: #ffffff;
     cursor: pointer;
     font-weight: 500;
     font-size: 0.95em;
@@ -185,12 +188,13 @@ body {
 }
 
 .lang-option:hover {
-    background: var(--light-gray);
+    background: #1a1a1a;
+    color: #fcd787;
 }
 
 .lang-option.active {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-    color: #667eea;
+    background: rgba(234, 163, 80, 0.2);
+    color: #fcd787;
     font-weight: 600;
 }
 
@@ -584,6 +588,7 @@ body {
     #nav ul li a {
         display: block;
         padding: 0.75rem 1rem;
+        min-height: 44px; /* iOS touch target */
     }
 
     .language-dropdown {
@@ -593,8 +598,9 @@ body {
     }
 
     .lang-current {
-        padding: 6px 10px;
-        font-size: 0.85em;
+        padding: 8px 12px;
+        font-size: 0.9em;
+        min-height: 44px;
     }
 
     .lang-current .flag {
@@ -607,8 +613,14 @@ body {
     }
 
     .lang-option {
-        padding: 10px 12px;
-        font-size: 0.9em;
+        padding: 12px 14px;
+        font-size: 0.95em;
+        min-height: 44px;
+    }
+
+    /* Logo size for mobile */
+    #header .logo img {
+        height: 80px !important;
     }
 
     .hero-content h1 {
@@ -632,9 +644,22 @@ body {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
+    
+    /* Form inputs - prevent iOS zoom */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 480px) {
+    /* Smaller logo for small phones */
+    #header .logo img {
+        height: 60px !important;
+    }
+    
     .hero-content h1 {
         font-size: 1.5rem;
     }
@@ -650,5 +675,139 @@ body {
     .btn {
         padding: 0.75rem 1.5rem;
         font-size: 0.9rem;
+        min-height: 44px;
+    }
+}
+
+/* Touch device optimizations for index page */
+@media (hover: none) and (pointer: coarse) {
+    .service-card:hover,
+    .project-card:hover {
+        transform: none;
+    }
+    
+    .service-card:active,
+    .project-card:active {
+        transform: scale(0.98);
+    }
+    
+    .btn:active {
+        transform: scale(0.97);
+    }
+}
+
+/* ============================================
+   MOBILE BLACK THEME - INDEX PAGE
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Header stays black on mobile */
+    #header {
+        background: #000000 !important;
+        border-bottom: 2px solid #eaa350 !important;
+    }
+    
+    /* Logo touch feedback */
+    #header .logo a:active img {
+        transform: scale(0.97);
+        filter: drop-shadow(0 4px 12px rgba(234, 163, 80, 0.4));
+    }
+    
+    /* Mobile navigation with black theme */
+    #nav {
+        background: #000000 !important;
+        border-bottom: 2px solid #eaa350 !important;
+    }
+    
+    #nav ul li a {
+        color: #ffffff !important;
+    }
+    
+    #nav ul li a:active {
+        background: rgba(234, 163, 80, 0.2);
+        color: #fcd787 !important;
+    }
+    
+    /* Mobile menu toggle with black theme */
+    .mobile-menu-toggle span {
+        background: #fcd787 !important;
+    }
+    
+    /* Language dropdown on mobile - index page */
+    .language-dropdown .lang-current {
+        background: #000000 !important;
+        color: #ffffff !important;
+        border: 2px solid #eaa350 !important;
+    }
+    
+    .language-dropdown .lang-menu {
+        background: #000000 !important;
+        border: 2px solid #eaa350 !important;
+    }
+    
+    .language-dropdown .lang-option {
+        color: #ffffff !important;
+    }
+    
+    .language-dropdown .lang-option:active {
+        background: rgba(234, 163, 80, 0.3) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Compact design for small phones */
+    #header {
+        padding: 0.75rem 0;
+    }
+    
+    #header .logo img {
+        transition: all 0.2s;
+    }
+    
+    /* Portal link with black theme */
+    #nav ul li a.portal-link {
+        background: linear-gradient(135deg, #eaa350 0%, #b19b75 100%) !important;
+        border: 2px solid #fcd787;
+    }
+    
+    #nav ul li a.portal-link:active {
+        background: linear-gradient(135deg, #fcd787 0%, #eaa350 100%) !important;
+        transform: scale(0.97);
+    }
+}
+
+/* Touch optimizations for index page */
+@media (hover: none) and (pointer: coarse) {
+    .service-card:active,
+    .project-card:active {
+        transform: scale(0.98);
+        box-shadow: 0 4px 16px rgba(234, 163, 80, 0.3);
+    }
+    
+    .btn:active {
+        background: #b19b75 !important;
+        transform: scale(0.97);
+    }
+    
+    .btn.btn-secondary:active {
+        background: #5c4938 !important;
+    }
+}
+
+/* iOS Safe Area - Index Page */
+@supports (-webkit-touch-callout: none) {
+    @media (max-width: 768px) {
+        #header {
+            padding-top: calc(1rem + env(safe-area-inset-top));
+        }
+        
+        .mobile-menu-toggle {
+            top: calc(1rem + env(safe-area-inset-top));
+        }
+        
+        .language-dropdown {
+            top: calc(1rem + env(safe-area-inset-top));
+            right: calc(60px + env(safe-area-inset-right));
+        }
     }
 }

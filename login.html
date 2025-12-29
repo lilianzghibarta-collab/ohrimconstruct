@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#eaa350">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="manifest" href="manifest.json">
     <title data-translate="login_title">Login - Ohrim Construct Portal</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dashboard.css">
@@ -29,7 +35,9 @@
     <div class="login-container">
         <div class="login-box">
             <div class="logo-section">
-                <h1>🏗️ OHRIM CONSTRUCT</h1>
+                <a href="index.html">
+                    <img src="logo.png" alt="OHRIM CONSTRUCT" style="height: 300px; margin-bottom: 20px; cursor: pointer;">
+                </a>
                 <p data-translate="login_subtitle">Employee & Administration Portal</p>
             </div>
             

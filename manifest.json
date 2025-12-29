@@ -1,0 +1,27 @@
+{
+  "name": "OHRIM CONSTRUCT",
+  "short_name": "OhrimConstruct",
+  "description": "Construction Management Portal - Employee & Administration",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f8f6f0",
+  "theme_color": "#eaa350",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
