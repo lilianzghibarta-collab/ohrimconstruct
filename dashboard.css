@@ -534,6 +534,13 @@
 }
 
 .status-badge.inactive {
+    background: #007bff;
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.4);
+}
+
+.status-badge.completed {
     background: #dc3545;
     color: #ffffff;
     font-weight: 700;

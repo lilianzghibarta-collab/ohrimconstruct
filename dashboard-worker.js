@@ -249,7 +249,7 @@ function updateStatusBadge(status) {
     if (!statusBadge) return;
     
     // Remove all status classes
-    statusBadge.classList.remove('active', 'inactive', 'pause');
+    statusBadge.classList.remove('active', 'inactive', 'completed', 'pause');
     
     // Add new status class and update text
     switch(status) {
@@ -259,7 +259,11 @@ function updateStatusBadge(status) {
             break;
         case 'inactive':
             statusBadge.classList.add('inactive');
-            statusBadge.textContent = '🔴 Inactive';
+            statusBadge.textContent = '🔵 Inactive';
+            break;
+        case 'completed':
+            statusBadge.classList.add('completed');
+            statusBadge.textContent = '🔴 Completed';
             break;
         case 'pause':
             statusBadge.classList.add('pause');
@@ -391,7 +395,7 @@ function clockOut() {
                     accuracy: position.coords.accuracy
                 };
                 record.totalHours = totalHours;
-                record.status = 'inactive';
+                record.status = 'completed';
                 
                 // Update localStorage
                 localStorage.setItem(attendanceKey, JSON.stringify(record));
@@ -410,7 +414,7 @@ function clockOut() {
                 stopLiveTimer();
                 
                 // Update status badge immediately
-                updateStatusBadge('inactive');
+                updateStatusBadge('completed');
                 
                 loadTodaysAttendance();
                 alert('✅ Successfully clocked out at ' + record.clockOutTime);
