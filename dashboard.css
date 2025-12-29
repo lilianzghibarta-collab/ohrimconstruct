@@ -16,33 +16,35 @@
 }
 
 .modal-content {
-    background: white;
+    background: #1a1a1a;
+    border: 2px solid #eaa350;
     padding: 40px;
     border-radius: 15px;
     max-width: 500px;
     width: 90%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 20px 60px rgba(234, 163, 80, 0.4);
     text-align: center;
 }
 
 .modal-content h2 {
-    color: #5c4938;
+    color: #eaa350;
     margin-bottom: 20px;
     font-size: 1.8em;
 }
 
 .modal-content p {
-    color: #666;
+    color: #fcd787;
     margin-bottom: 20px;
     line-height: 1.6;
 }
 
 #locationStatus {
     padding: 15px;
-    background: #f8f9fa;
+    background: rgba(234, 163, 80, 0.1);
+    border: 1px solid #eaa350;
     border-radius: 8px;
     margin: 20px 0;
-    color: #666;
+    color: #fcd787;
     font-weight: 500;
 }
 
@@ -215,13 +217,14 @@
 .dashboard-container {
     display: flex;
     min-height: 100vh;
-    background: #f5f6fa;
+    background: #000000;
 }
 
 /* Sidebar */
 .sidebar {
     width: 280px;
-    background: linear-gradient(180deg, #5c4938 0%, #24150c 100%);
+    background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+    border-right: 2px solid #eaa350;
     color: white;
     display: flex;
     flex-direction: column;
@@ -231,21 +234,23 @@
 }
 
 .sidebar.admin {
-    background: linear-gradient(180deg, #eaa350 0%, #b19b75 100%);
+    background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+    border-right: 2px solid #eaa350;
 }
 
 .sidebar-header {
     padding: 30px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid #eaa350;
 }
 
 .sidebar-header h2 {
     margin-bottom: 5px;
     font-size: 1.8em;
+    color: #eaa350;
 }
 
 .sidebar-header p {
-    color: rgba(255, 255, 255, 0.8);
+    color: #fcd787;
     font-size: 0.9em;
 }
 
@@ -270,23 +275,23 @@
 }
 
 .nav-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
+    background: rgba(234, 163, 80, 0.1);
+    color: #eaa350;
 }
 
 .nav-item.active {
-    background: rgba(255, 255, 255, 0.15);
-    border-left-color: white;
-    color: white;
+    background: rgba(234, 163, 80, 0.15);
+    border-left-color: #eaa350;
+    color: #eaa350;
     font-weight: 600;
 }
 
 .btn-logout {
     margin: 20px;
     padding: 12px;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(234, 163, 80, 0.2);
+    color: #eaa350;
+    border: 2px solid #eaa350;
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
@@ -294,7 +299,8 @@
 }
 
 .btn-logout:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(234, 163, 80, 0.3);
+    color: #fcd787;
 }
 
 /* Main Content */
@@ -303,6 +309,7 @@
     flex: 1;
     padding: 30px;
     overflow-y: auto;
+    background: #0a0a0a;
 }
 
 .content-header {
@@ -415,21 +422,21 @@
     align-items: center;
     gap: 12px;
     padding: 15px 35px;
-    background: white;
+    background: #1a1a1a;
     color: #eaa350;
-    border: none;
+    border: 2px solid #eaa350;
     border-radius: 10px;
     font-size: 1.1em;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(234, 163, 80, 0.2);
 }
 
 .btn-clockout:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    background: #f8f9fa;
+    box-shadow: 0 6px 20px rgba(234, 163, 80, 0.4);
+    background: rgba(234, 163, 80, 0.1);
 }
 
 .btn-clockout .btn-icon {
@@ -445,20 +452,21 @@
 }
 
 .info-card {
-    background: white;
+    background: #1a1a1a;
+    border: 2px solid #eaa350;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(234, 163, 80, 0.2);
     transition: transform 0.3s;
 }
 
 .info-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 20px rgba(234, 163, 80, 0.4);
 }
 
 .info-card h3 {
-    color: #666;
+    color: #fcd787;
     font-size: 0.9em;
     margin-bottom: 15px;
 }
@@ -466,33 +474,34 @@
 .big-number {
     font-size: 2.5em;
     font-weight: bold;
-    color: #5c4938;
+    color: #eaa350;
     margin: 10px 0;
 }
 
 .big-text {
     font-size: 1.3em;
     font-weight: bold;
-    color: #5c4938;
+    color: #eaa350;
     margin: 10px 0;
 }
 
 .info-card small {
-    color: #999;
+    color: #888;
     font-size: 0.85em;
 }
 
 /* Activity List */
 .recent-activity {
-    background: white;
+    background: #1a1a1a;
+    border: 2px solid #eaa350;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(234, 163, 80, 0.2);
 }
 
 .recent-activity h3 {
     margin-bottom: 20px;
-    color: #5c4938;
+    color: #eaa350;
 }
 
 .activity-list {
@@ -594,16 +603,17 @@
 /* Tables */
 .data-table {
     width: 100%;
-    background: white;
+    background: #1a1a1a;
+    border: 2px solid #eaa350;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(234, 163, 80, 0.2);
     margin-top: 20px;
 }
 
 .data-table thead {
-    background: #5c4938;
-    color: white;
+    background: #eaa350;
+    color: #000000;
 }
 
 .data-table th {
@@ -614,11 +624,12 @@
 
 .data-table td {
     padding: 15px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #333;
+    color: #fcd787;
 }
 
 .data-table tbody tr:hover {
-    background: #f8f9fa;
+    background: rgba(234, 163, 80, 0.1);
 }
 
 /* Timesheet */
@@ -629,16 +640,17 @@
 }
 
 .current-shift {
-    background: white;
+    background: #1a1a1a;
+    border: 2px solid #eaa350;
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(234, 163, 80, 0.2);
 }
 
 .current-shift h3 {
     margin-bottom: 15px;
-    color: #5c4938;
+    color: #eaa350;
 }
 
 .current-shift p {
