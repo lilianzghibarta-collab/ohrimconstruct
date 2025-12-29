@@ -941,35 +941,35 @@ function generateReport(reportType) {
     
     switch(reportType) {
         case 'attendance':
-            reportTitle.textContent = '📊 Raport Pontaj Lunar';
+            reportTitle.textContent = '📊 Monthly Attendance Report';
             content = generateAttendanceReport();
             break;
         case 'sites':
-            reportTitle.textContent = '🏗️ Raport Progres Șantiere';
+            reportTitle.textContent = '🏗️ Site Progress Report';
             content = generateSitesReport();
             break;
         case 'payroll':
-            reportTitle.textContent = '💰 Raport Financiar';
+            reportTitle.textContent = '💰 Financial Report';
             content = generatePayrollReport();
             break;
         case 'equipment':
-            reportTitle.textContent = '🔧 Raport Echipamente';
+            reportTitle.textContent = '🔧 Equipment Report';
             content = generateEquipmentReport();
             break;
         case 'productivity':
-            reportTitle.textContent = '✅ Raport Productivitate';
+            reportTitle.textContent = '✅ Productivity Report';
             content = generateProductivityReport();
             break;
         case 'requests':
-            reportTitle.textContent = '📝 Raport Cereri Angajați';
+            reportTitle.textContent = '📝 Employee Requests Report';
             content = generateRequestsReport();
             break;
     }
     
     reportContent.innerHTML = `
         <div class="report-meta">
-            <p><strong>Generat:</strong> ${currentDate}</p>
-            <p><strong>Companie:</strong> OHR BUILD</p>
+            <p><strong>Generated:</strong> ${currentDate}</p>
+            <p><strong>Company:</strong> OHR BUILD</p>
         </div>
         ${content}
     `;
@@ -1001,14 +1001,14 @@ function generateAttendanceReport() {
     });
     
     return `
-        <h3>Prezență Luna Curentă</h3>
+        <h3>Current Month Attendance</h3>
         <table class="data-table">
             <thead>
                 <tr>
-                    <th>Muncitor</th>
-                    <th>Zile Lucrate</th>
-                    <th>Total Ore</th>
-                    <th>Medie Ore/Zi</th>
+                    <th>Worker</th>
+                    <th>Days Worked</th>
+                    <th>Total Hours</th>
+                    <th>Avg Hours/Day</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -1022,38 +1022,38 @@ function generateAttendanceReport() {
                             <td>${stats.days}</td>
                             <td>${stats.totalHours.toFixed(1)}h</td>
                             <td>${avgHours}h</td>
-                            <td><span class="status-badge active">✅ Activ</span></td>
+                            <td><span class="status-badge active">✅ Active</span></td>
                         </tr>
                     `;
-                }).join('') || '<tr><td colspan="5">Nu există date pentru luna curentă</td></tr>'}
+                }).join('') || '<tr><td colspan="5">No data for current month</td></tr>'}
             </tbody>
         </table>
         
         <div class="report-summary">
-            <h4>Rezumat</h4>
-            <p>📊 Total zile lucrate: ${Object.values(workerStats).reduce((sum, s) => sum + s.days, 0)}</p>
-            <p>⏰ Total ore lucrate: ${Object.values(workerStats).reduce((sum, s) => sum + s.totalHours, 0).toFixed(1)}h</p>
-            <p>👷 Muncitori activi: ${Object.keys(workerStats).length}</p>
+            <h4>Summary</h4>
+            <p>📊 Total days worked: ${Object.values(workerStats).reduce((sum, s) => sum + s.days, 0)}</p>
+            <p>⏰ Total hours worked: ${Object.values(workerStats).reduce((sum, s) => sum + s.totalHours, 0).toFixed(1)}h</p>
+            <p>👷 Active workers: ${Object.keys(workerStats).length}</p>
         </div>
     `;
 }
 
 function generateSitesReport() {
     return `
-        <h3>Progres Șantiere</h3>
+        <h3>Site Progress Overview</h3>
         <table class="data-table">
             <thead>
                 <tr>
-                    <th>Șantier</th>
-                    <th>Locație</th>
-                    <th>Progres</th>
-                    <th>Muncitori</th>
+                    <th>Site</th>
+                    <th>Location</th>
+                    <th>Progress</th>
+                    <th>Workers</th>
                     <th>Status</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Bloc Rezidențial A3</td>
+                    <td>Residential Block A3</td>
                     <td>Dublin 2, Ireland</td>
                     <td>
                         <div class="progress-bar">
@@ -1061,10 +1061,10 @@ function generateSitesReport() {
                         </div>
                     </td>
                     <td>12</td>
-                    <td><span class="status-badge active">🟢 În Progres</span></td>
+                    <td><span class="status-badge active">🟢 In Progress</span></td>
                 </tr>
                 <tr>
-                    <td>Casă Individuală Durlești</td>
+                    <td>Individual House Durlești</td>
                     <td>Durlești</td>
                     <td>
                         <div class="progress-bar">
@@ -1072,10 +1072,10 @@ function generateSitesReport() {
                         </div>
                     </td>
                     <td>6</td>
-                    <td><span class="status-badge active">🟢 În Progres</span></td>
+                    <td><span class="status-badge active">🟢 In Progress</span></td>
                 </tr>
                 <tr>
-                    <td>Renovare Complex B</td>
+                    <td>Complex B Renovation</td>
                     <td>Dublin 1, Ireland</td>
                     <td>
                         <div class="progress-bar">
@@ -1083,16 +1083,16 @@ function generateSitesReport() {
                         </div>
                     </td>
                     <td>8</td>
-                    <td><span class="status-badge warning">🟡 Finalizare</span></td>
+                    <td><span class="status-badge warning">🟡 Completion</span></td>
                 </tr>
             </tbody>
         </table>
         
         <div class="report-summary">
-            <h4>Rezumat</h4>
-            <p>🏗️ Total șantiere: 5 (3 afișate)</p>
-            <p>👷 Total muncitori: 24</p>
-            <p>📊 Progres mediu: 70%</p>
+            <h4>Summary</h4>
+            <p>🏗️ Total sites: 5 (3 shown)</p>
+            <p>👷 Total workers: 24</p>
+            <p>📊 Average progress: 70%</p>
         </div>
     `;
 }
@@ -1127,14 +1127,14 @@ function generatePayrollReport() {
     const totalSalaries = payroll.reduce((sum, p) => sum + parseFloat(p.salary), 0);
     
     return `
-        <h3>Raport Salarizare Luna Curentă</h3>
+        <h3>Current Month Payroll Report</h3>
         <table class="data-table">
             <thead>
                 <tr>
-                    <th>Angajat</th>
-                    <th>Ore Lucrate</th>
-                    <th>Tarif Orar</th>
-                    <th>Salariu</th>
+                    <th>Employee</th>
+                    <th>Hours Worked</th>
+                    <th>Hourly Rate</th>
+                    <th>Salary</th>
                 </tr>
             </thead>
             <tbody>
@@ -1145,7 +1145,7 @@ function generatePayrollReport() {
                         <td>${p.rate} EUR/h</td>
                         <td><strong>${p.salary} EUR</strong></td>
                     </tr>
-                `).join('') || '<tr><td colspan="4">Nu există date</td></tr>'}
+                `).join('') || '<tr><td colspan="4">No data available</td></tr>'}
             </tbody>
             <tfoot>
                 <tr style="background: #f8f6f0; font-weight: bold;">
@@ -1156,84 +1156,84 @@ function generatePayrollReport() {
         </table>
         
         <div class="report-summary">
-            <h4>Rezumat Financiar</h4>
-            <p>💰 Total cheltuieli salariale: ${totalSalaries.toFixed(2)} EUR</p>
-            <p>👥 Număr angajați: ${payroll.length}</p>
-            <p>📊 Salariu mediu: ${(totalSalaries / payroll.length || 0).toFixed(2)} EUR</p>
+            <h4>Financial Summary</h4>
+            <p>💰 Total salary expenses: ${totalSalaries.toFixed(2)} EUR</p>
+            <p>👥 Number of employees: ${payroll.length}</p>
+            <p>📊 Average salary: ${(totalSalaries / payroll.length || 0).toFixed(2)} EUR</p>
         </div>
     `;
 }
 
 function generateEquipmentReport() {
     return `
-        <h3>Inventar Echipamente</h3>
+        <h3>Equipment Inventory</h3>
         <table class="data-table">
             <thead>
                 <tr>
-                    <th>Cod</th>
-                    <th>Echipament</th>
-                    <th>Cantitate</th>
-                    <th>Stare</th>
-                    <th>Următoarea Mentenanță</th>
+                    <th>Code</th>
+                    <th>Equipment</th>
+                    <th>Quantity</th>
+                    <th>Condition</th>
+                    <th>Next Maintenance</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>EQ-2301</td>
-                    <td>Betonieră Profesională</td>
+                    <td>Professional Concrete Mixer</td>
                     <td>3</td>
-                    <td><span class="status-badge warning">⚠️ Mentenanță</span></td>
-                    <td>15 Ian 2026</td>
+                    <td><span class="status-badge warning">⚠️ Maintenance</span></td>
+                    <td>15 Jan 2026</td>
                 </tr>
                 <tr>
                     <td>EQ-2302</td>
-                    <td>Macara Mobilă</td>
+                    <td>Mobile Crane</td>
                     <td>2</td>
-                    <td><span class="status-badge active">✅ Bună</span></td>
+                    <td><span class="status-badge active">✅ Good</span></td>
                     <td>01 Feb 2026</td>
                 </tr>
                 <tr>
                     <td>EQ-2303</td>
-                    <td>Scule Electrice Set</td>
+                    <td>Power Tools Set</td>
                     <td>15</td>
-                    <td><span class="status-badge active">✅ Bună</span></td>
-                    <td>20 Ian 2026</td>
+                    <td><span class="status-badge active">✅ Good</span></td>
+                    <td>20 Jan 2026</td>
                 </tr>
                 <tr>
                     <td>EQ-2304</td>
-                    <td>Schele Metalice</td>
+                    <td>Metal Scaffolding</td>
                     <td>50</td>
-                    <td><span class="status-badge active">✅ Bună</span></td>
+                    <td><span class="status-badge active">✅ Good</span></td>
                     <td>10 Feb 2026</td>
                 </tr>
             </tbody>
         </table>
         
         <div class="report-summary">
-            <h4>Rezumat</h4>
-            <p>🔧 Total echipamente: 70 bucăți</p>
-            <p>✅ În stare bună: 67</p>
-            <p>⚠️ Necesită mentenanță: 3</p>
+            <h4>Summary</h4>
+            <p>🔧 Total equipment: 70 items</p>
+            <p>✅ In good condition: 67</p>
+            <p>⚠️ Requires maintenance: 3</p>
         </div>
     `;
 }
 
 function generateProductivityReport() {
     return `
-        <h3>Productivitate & Performanță</h3>
+        <h3>Productivity & Performance</h3>
         <table class="data-table">
             <thead>
                 <tr>
-                    <th>Echipă/Muncitor</th>
-                    <th>Sarcini Atribuite</th>
-                    <th>Sarcini Complete</th>
-                    <th>Progres</th>
+                    <th>Team/Worker</th>
+                    <th>Assigned Tasks</th>
+                    <th>Completed Tasks</th>
+                    <th>Progress</th>
                     <th>Rating</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Echipa A - Bloc A3</td>
+                    <td>Team A - Block A3</td>
                     <td>45</td>
                     <td>38</td>
                     <td>
@@ -1244,7 +1244,7 @@ function generateProductivityReport() {
                     <td>⭐⭐⭐⭐⭐</td>
                 </tr>
                 <tr>
-                    <td>Echipa B - Durlești</td>
+                    <td>Team B - Durlești</td>
                     <td>28</td>
                     <td>21</td>
                     <td>
@@ -1255,7 +1255,7 @@ function generateProductivityReport() {
                     <td>⭐⭐⭐⭐</td>
                 </tr>
                 <tr>
-                    <td>Echipa C - Renovare</td>
+                    <td>Team C - Renovation</td>
                     <td>32</td>
                     <td>29</td>
                     <td>
@@ -1269,10 +1269,10 @@ function generateProductivityReport() {
         </table>
         
         <div class="report-summary">
-            <h4>Rezumat</h4>
-            <p>✅ Total sarcini complete: 88</p>
-            <p>📋 Total sarcini: 105</p>
-            <p>📊 Rata de finalizare: 84%</p>
+            <h4>Summary</h4>
+            <p>✅ Total completed tasks: 88</p>
+            <p>📋 Total tasks: 105</p>
+            <p>📊 Completion rate: 84%</p>
         </div>
     `;
 }
@@ -1285,15 +1285,15 @@ function generateRequestsReport() {
     const pending = requests.filter(r => r.status === 'pending').length;
     
     return `
-        <h3>Cereri Angajați</h3>
+        <h3>Employee Requests</h3>
         <table class="data-table">
             <thead>
                 <tr>
-                    <th>Angajat</th>
-                    <th>Tip Cerere</th>
-                    <th>Perioada</th>
+                    <th>Employee</th>
+                    <th>Request Type</th>
+                    <th>Period</th>
                     <th>Status</th>
-                    <th>Data Depunerii</th>
+                    <th>Submission Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -1302,19 +1302,19 @@ function generateRequestsReport() {
                         <td>${req.fullName}</td>
                         <td>${getRequestTypeLabel(req.type)}</td>
                         <td>${new Date(req.startDate).toLocaleDateString()} - ${new Date(req.endDate).toLocaleDateString()}</td>
-                        <td><span class="status-badge ${req.status}">${req.status === 'approved' ? '✅ Aprobat' : req.status === 'rejected' ? '❌ Respins' : '⏳ În Așteptare'}</span></td>
+                        <td><span class="status-badge ${req.status}">${req.status === 'approved' ? '✅ Approved' : req.status === 'rejected' ? '❌ Rejected' : '⏳ Pending'}</span></td>
                         <td>${new Date(req.submittedDate).toLocaleDateString()}</td>
                     </tr>
-                `).join('') || '<tr><td colspan="5">Nu există cereri</td></tr>'}
+                `).join('') || '<tr><td colspan="5">No requests available</td></tr>'}
             </tbody>
         </table>
         
         <div class="report-summary">
-            <h4>Rezumat</h4>
-            <p>✅ Cereri aprobate: ${approved}</p>
-            <p>❌ Cereri respinse: ${rejected}</p>
-            <p>⏳ Cereri în așteptare: ${pending}</p>
-            <p>📊 Total cereri: ${requests.length}</p>
+            <h4>Summary</h4>
+            <p>✅ Approved requests: ${approved}</p>
+            <p>❌ Rejected requests: ${rejected}</p>
+            <p>⏳ Pending requests: ${pending}</p>
+            <p>📊 Total requests: ${requests.length}</p>
         </div>
     `;
 }
@@ -1329,7 +1329,7 @@ function printReport() {
     printWindow.document.write(`
         <html>
         <head>
-            <title>Raport OHR BUILD</title>
+            <title>OHR BUILD Report</title>
             <style>
                 body { font-family: Arial, sans-serif; padding: 20px; }
                 .report-header { text-align: center; margin-bottom: 30px; }
@@ -1356,7 +1356,7 @@ function printReport() {
 }
 
 function downloadReport() {
-    alert('📥 Funcția de descărcare PDF va fi implementată cu o librărie dedicată (jsPDF). Pentru moment, folosiți butonul de printare.');
+    showNotification('📥 PDF download feature will be implemented with jsPDF library. For now, please use the Print button.', 'info');
 }
 
 // ============================================
@@ -3039,3 +3039,7 @@ function deleteEquipment(eqId) {
 window.switchPayrollMode = switchPayrollMode;
 window.markAsPaid = markAsPaid;
 window.generatePayroll = generatePayroll;
+window.generateReport = generateReport;
+window.closeReport = closeReport;
+window.printReport = printReport;
+window.downloadReport = downloadReport;
