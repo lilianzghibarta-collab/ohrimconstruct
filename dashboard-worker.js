@@ -245,6 +245,46 @@ function loadTodaysAttendance() {
     
     // Load monthly timesheet
     loadMonthlyTimesheet();
+    
+    // Load overview stats
+    loadOverviewStats();
+}
+
+function loadOverviewStats() {
+    const username = sessionStorage.getItem('username');
+    const allAttendance = JSON.parse(localStorage.getItem('allAttendance') || '[]');
+    
+    // Calculate current month stats
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
+    
+    const monthlyRecords = allAttendance.filter(record => {
+        if (record.username !== username) return false;
+        const recordDate = new Date(record.date);
+        return recordDate.getMonth() === currentMonth && recordDate.getFullYear() === currentYear;
+    });
+    
+    // Calculate total hours worked (only completed shifts)
+    const totalHours = monthlyRecords
+        .filter(r => r.status === 'completed' && r.totalHours)
+        .reduce((sum, record) => sum + (parseFloat(record.totalHours) || 0), 0);
+    
+    // Calculate estimated salary
+    const hourlyRate = 25; // EUR per hour
+    const estimatedSalary = (totalHours * hourlyRate).toFixed(2);
+    
+    // Update UI
+    const hoursElement = document.getElementById('hoursThisMonth');
+    const salaryElement = document.getElementById('estimatedSalaryOverview');
+    
+    if (hoursElement) {
+        hoursElement.textContent = totalHours.toFixed(1);
+    }
+    
+    if (salaryElement) {
+        salaryElement.textContent = estimatedSalary + ' EUR';
+    }
 }
 
 function loadMonthlyTimesheet() {
@@ -487,6 +527,7 @@ function clockOut() {
                 updateStatusBadge('completed');
                 
                 loadTodaysAttendance();
+                loadOverviewStats(); // Update overview after clock out
                 alert('✅ Successfully clocked out at ' + record.clockOutTime);
             },
             (error) => {
