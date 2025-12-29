@@ -241,43 +241,74 @@
             <!-- Sites Section -->
             <section id="sites" class="content-section">
                 <div class="section-header">
-                    <h3>🏗️ Gestionare Șantiere</h3>
-                    <button class="btn-primary">➕ Șantier Nou</button>
+                    <h3>🏗️ Site Management</h3>
+                    <button class="btn-primary" onclick="showAddSiteModal()">➕ Add New Site</button>
+                    <button class="btn-secondary" onclick="showAssignModal()">👷 Assign Workers</button>
                 </div>
                 
-                <div class="sites-grid">
-                    <div class="site-card active">
-                        <div class="site-header">
-                            <h4>Bloc Rezidențial A3</h4>
-                            <span class="site-status active">🟢 Activ</span>
-                        </div>
-                        <p>📍 Str. Constructorilor 45, Chișinău</p>
-                        <p>👷 Muncitori: 12 | 👨‍💼 Șef: Ion Popescu</p>
-                        <p>📅 Început: 01 Nov 2025 | Deadline: 31 Mar 2026</p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 75%">75%</div>
-                        </div>
-                        <div class="site-actions">
-                            <button class="btn-small">👁️ Vezi Detalii</button>
-                            <button class="btn-small">✏️ Editează</button>
-                            <button class="btn-small">📊 Raport</button>
-                        </div>
-                    </div>
-                    
-                    <div class="site-card active">
-                        <div class="site-header">
-                            <h4>Casă Individuală Durlești</h4>
-                            <span class="site-status active">🟢 Activ</span>
-                        </div>
-                        <p>📍 Durlești, MD-2004</p>
-                        <p>👷 Muncitori: 6 | 👨‍💼 Șef: Vasile Rusu</p>
-                        <p>📅 Început: 15 Nov 2025 | Deadline: 28 Feb 2026</p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 45%">45%</div>
-                        </div>
-                        <div class="site-actions">
-                            <button class="btn-small">👁️ Vezi Detalii</button>
-                            <button class="btn-small">✏️ Editează</button>
+                <div id="sitesContainer" class="sites-grid">
+                    <!-- Sites will be loaded dynamically -->
+                </div>
+            </section>
+            
+            <!-- Add/Edit Site Modal -->
+            <div id="siteModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close" onclick="closeSiteModal()">&times;</span>
+                    <h2 id="siteModalTitle">➕ Add New Site</h2>
+                    <form id="siteForm" onsubmit="saveSite(event)">
+                        <input type="hidden" id="siteId">
+                        
+                        <label>Site Name *</label>
+                        <input type="text" id="siteName" required placeholder="e.g., Residential Block A3">
+                        
+                        <label>Address * (for Google Maps)</label>
+                        <input type="text" id="siteAddress" required placeholder="e.g., Constructorilor St. 45, Chișinău, Moldova">
+                        
+                        <label>Site Manager</label>
+                        <input type="text" id="siteManager" placeholder="e.g., Ion Popescu">
+                        
+                        <label>Phone</label>
+                        <input type="tel" id="sitePhone" placeholder="+373 69 123 456">
+                        
+                        <label>Schedule</label>
+                        <input type="text" id="siteSchedule" placeholder="08:00 - 17:00">
+                        
+                        <label>Start Date</label>
+                        <input type="date" id="siteStartDate">
+                        
+                        <label>Status</label>
+                        <select id="siteStatus">
+                            <option value="active">Active</option>
+                            <option value="completed">Completed</option>
+                            <option value="paused">Paused</option>
+                        </select>
+                        
+                        <button type="submit" class="btn-primary">💾 Save Site</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Assign Worker to Site Modal -->
+            <div id="assignWorkerModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close" onclick="closeAssignModal()">&times;</span>
+                    <h2>👷 Assign Worker to Site</h2>
+                    <form id="assignForm" onsubmit="assignWorkerToSite(event)">
+                        <label>Select Worker *</label>
+                        <select id="assignWorkerSelect" required>
+                            <option value="">-- Select Worker --</option>
+                        </select>
+                        
+                        <label>Select Site *</label>
+                        <select id="assignSiteSelect" required>
+                            <option value="">-- Select Site --</option>
+                        </select>
+                        
+                        <button type="submit" class="btn-primary">✅ Assign</button>
+                    </form>
+                </div>
+            </div>
                             <button class="btn-small">📊 Raport</button>
                         </div>
                     </div>
@@ -482,6 +513,7 @@
     <script src="translations.js"></script>
     <script src="demo-data.js"></script>
     <script src="admin-features.js"></script>
+    <script src="site-management.js"></script>
     <script src="dashboard-admin.js"></script>
 </body>
 </html>
