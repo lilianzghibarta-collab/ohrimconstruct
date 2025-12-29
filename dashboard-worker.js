@@ -242,6 +242,76 @@ function loadTodaysAttendance() {
         // Update status badge
         updateStatusBadge(record.status || 'active');
     }
+    
+    // Load monthly timesheet
+    loadMonthlyTimesheet();
+}
+
+function loadMonthlyTimesheet() {
+    const username = sessionStorage.getItem('username');
+    const allAttendance = JSON.parse(localStorage.getItem('allAttendance') || '[]');
+    
+    // Filter records for current user and current month
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
+    
+    const monthlyRecords = allAttendance.filter(record => {
+        if (record.username !== username) return false;
+        const recordDate = new Date(record.date);
+        return recordDate.getMonth() === currentMonth && recordDate.getFullYear() === currentYear;
+    });
+    
+    // Sort by date descending (most recent first)
+    monthlyRecords.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    // Populate table
+    const tbody = document.getElementById('timesheetTableBody');
+    if (!tbody) return;
+    
+    if (monthlyRecords.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #fcd787;">No attendance records for this month</td></tr>';
+        return;
+    }
+    
+    tbody.innerHTML = monthlyRecords.map(record => {
+        const date = new Date(record.date);
+        const formattedDate = date.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+        const clockIn = record.clockInTime || '-';
+        const clockOut = record.clockOutTime || '-';
+        const hours = record.totalHours ? record.totalHours.toFixed(1) + 'h' : '-';
+        
+        let statusBadge = '';
+        switch(record.status) {
+            case 'active':
+                statusBadge = '<span class="status-badge active">🟢 Active</span>';
+                break;
+            case 'completed':
+                statusBadge = '<span class="status-badge completed">🔴 Completed</span>';
+                break;
+            case 'pause':
+                statusBadge = '<span class="status-badge pause">⏸️ Pause</span>';
+                break;
+            case 'inactive':
+                statusBadge = '<span class="status-badge inactive">🔵 Inactive</span>';
+                break;
+            case 'holiday':
+                statusBadge = '<span class="status-badge holiday">🎉 Holiday</span>';
+                break;
+            default:
+                statusBadge = '<span class="status-badge inactive">🔵 Inactive</span>';
+        }
+        
+        return `
+            <tr>
+                <td>${formattedDate}</td>
+                <td>${clockIn}</td>
+                <td>${clockOut}</td>
+                <td>${hours}</td>
+                <td>${statusBadge}</td>
+            </tr>
+        `;
+    }).join('');
 }
 
 function updateStatusBadge(status) {
@@ -455,6 +525,7 @@ function addBreak() {
     
     // Update status badge
     updateStatusBadge('pause');
+    loadMonthlyTimesheet();
     
     alert('⏸️ Break started - Status changed to Pause');
 }
