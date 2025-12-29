@@ -10,6 +10,69 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// ==================== LOCATION PICKER FUNCTIONS ====================
+
+function useCurrentLocation() {
+    if (!navigator.geolocation) {
+        alert('❌ Geolocation is not supported by your browser');
+        return;
+    }
+    
+    const addressInput = document.getElementById('siteAddress');
+    addressInput.value = 'Loading location...';
+    
+    navigator.geolocation.getCurrentPosition(
+        async (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            
+            // Use reverse geocoding to get address
+            try {
+                const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`);
+                const data = await response.json();
+                
+                if (data && data.display_name) {
+                    addressInput.value = data.display_name;
+                } else {
+                    addressInput.value = `Lat: ${lat.toFixed(6)}, Lon: ${lon.toFixed(6)}`;
+                }
+            } catch (error) {
+                // Fallback to coordinates if geocoding fails
+                addressInput.value = `Lat: ${lat.toFixed(6)}, Lon: ${lon.toFixed(6)}`;
+            }
+        },
+        (error) => {
+            addressInput.value = '';
+            alert('❌ Cannot get location: ' + error.message + '\n\nPlease allow location access or enter address manually.');
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        }
+    );
+}
+
+function searchOnMaps() {
+    const addressInput = document.getElementById('siteAddress');
+    const currentAddress = addressInput.value.trim();
+    
+    // Open Google Maps search
+    let mapsUrl;
+    if (currentAddress) {
+        // Search for existing address
+        mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(currentAddress)}`;
+    } else {
+        // Open general maps
+        mapsUrl = 'https://www.google.com/maps/';
+    }
+    
+    // Show instructions
+    alert('🗺️ Opening Google Maps...\n\nInstructions:\n1. Search for your construction site location\n2. Click on the location marker\n3. Copy the full address from Google Maps\n4. Paste it into the Address field\n\nOr you can right-click on the map and select "What\'s here?" to get coordinates.');
+    
+    window.open(mapsUrl, '_blank');
+}
+
 // ==================== SITE CRUD OPERATIONS ====================
 
 function loadSites() {

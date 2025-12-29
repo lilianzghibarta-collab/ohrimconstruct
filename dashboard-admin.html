@@ -263,7 +263,12 @@
                         <input type="text" id="siteName" required placeholder="e.g., Residential Block A3">
                         
                         <label>Address * (for Google Maps)</label>
-                        <input type="text" id="siteAddress" required placeholder="e.g., Constructorilor St. 45, Chișinău, Moldova">
+                        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                            <input type="text" id="siteAddress" required placeholder="e.g., Constructorilor St. 45, Chișinău, Moldova" style="flex: 1;">
+                            <button type="button" class="btn-small" onclick="useCurrentLocation()" title="Use device location">📍 Current</button>
+                            <button type="button" class="btn-small" onclick="searchOnMaps()" title="Search on Google Maps">🔍 Search</button>
+                        </div>
+                        <small style="color: #fcd787; font-size: 0.85em;">Tip: Click "Current" to use your location, or "Search" to find on Google Maps</small>
                         
                         <label>Site Manager</label>
                         <input type="text" id="siteManager" placeholder="e.g., Ion Popescu">
