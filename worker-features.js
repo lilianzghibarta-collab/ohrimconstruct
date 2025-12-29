@@ -468,16 +468,16 @@ function loadSalaryInfo() {
     );
     
     const totalHours = monthAttendance.reduce((sum, att) => sum + (parseFloat(att.totalHours) || 0), 0);
-    const hourlyRate = 25; // EUR per hour
+    const hourlyRate = 25; // EUR per hour (not MDL/lei)
     const estimatedSalary = (totalHours * hourlyRate).toFixed(2);
     
     container.innerHTML = `
         <div class="salary-overview">
             <div class="salary-card">
-                <h3>💰 Current Month</h3>
+                <h3>💰 Estimated Monthly Salary</h3>
                 <p class="big-number">${estimatedSalary} EUR</p>
                 <p>Hours Worked: ${totalHours.toFixed(2)}h</p>
-                <p>Hourly Rate: ${hourlyRate} EUR</p>
+                <p>Hourly Rate: ${hourlyRate} EUR/h</p>
             </div>
         </div>
         
