@@ -214,6 +214,7 @@ function clockInWithLocation(locationData) {
     sessionStorage.removeItem('needsClockIn');
     
     // Update UI
+    updateStatusBadge('active');
     loadTodaysAttendance();
     
     alert('✅ Successfully clocked in at ' + attendanceRecord.clockInTime);
@@ -237,6 +238,33 @@ function loadTodaysAttendance() {
             const hours = (now - clockInDate) / (1000 * 60 * 60);
             document.getElementById('hoursWorked').textContent = hours.toFixed(1) + 'h';
         }
+        
+        // Update status badge
+        updateStatusBadge(record.status || 'active');
+    }
+}
+
+function updateStatusBadge(status) {
+    const statusBadge = document.querySelector('.current-shift .status-badge');
+    if (!statusBadge) return;
+    
+    // Remove all status classes
+    statusBadge.classList.remove('active', 'inactive', 'pause');
+    
+    // Add new status class and update text
+    switch(status) {
+        case 'active':
+            statusBadge.classList.add('active');
+            statusBadge.textContent = '🟢 Active';
+            break;
+        case 'inactive':
+            statusBadge.classList.add('inactive');
+            statusBadge.textContent = '🔴 Inactive';
+            break;
+        case 'pause':
+            statusBadge.classList.add('pause');
+            statusBadge.textContent = '⏸️ Pause';
+            break;
     }
 }
 
@@ -292,6 +320,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function clockIn() {
+    const username = sessionStorage.getItem('username');
+    const today = new Date().toDateString();
+    const attendanceKey = `attendance_${username}_${today}`;
+    const record = JSON.parse(localStorage.getItem(attendanceKey));
+    
+    // If already clocked in today and status is pause, resume to active
+    if (record && !record.clockOut && record.status === 'pause') {
+        record.status = 'active';
+        localStorage.setItem(attendanceKey, JSON.stringify(record));
+        
+        // Update global attendance
+        let allAttendance = JSON.parse(localStorage.getItem('allAttendance') || '[]');
+        const index = allAttendance.findIndex(a => 
+            a.username === username && a.date === today
+        );
+        if (index !== -1) {
+            allAttendance[index] = record;
+            localStorage.setItem('allAttendance', JSON.stringify(allAttendance));
+        }
+        
+        updateStatusBadge('active');
+        alert('✅ Break ended - Back to Active status');
+        return;
+    }
+    
+    // Normal clock in with geolocation
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -337,7 +391,7 @@ function clockOut() {
                     accuracy: position.coords.accuracy
                 };
                 record.totalHours = totalHours;
-                record.status = 'completed';
+                record.status = 'inactive';
                 
                 // Update localStorage
                 localStorage.setItem(attendanceKey, JSON.stringify(record));
@@ -355,6 +409,9 @@ function clockOut() {
                 // Stop timer
                 stopLiveTimer();
                 
+                // Update status badge immediately
+                updateStatusBadge('inactive');
+                
                 loadTodaysAttendance();
                 alert('✅ Successfully clocked out at ' + record.clockOutTime);
             },
@@ -368,7 +425,34 @@ function clockOut() {
 }
 
 function addBreak() {
-    alert('☕ Break recorded');
+    const username = sessionStorage.getItem('username');
+    const today = new Date().toDateString();
+    const attendanceKey = `attendance_${username}_${today}`;
+    const record = JSON.parse(localStorage.getItem(attendanceKey));
+    
+    if (!record || record.clockOut) {
+        alert('❌ No active clock in found for today');
+        return;
+    }
+    
+    // Update status to pause
+    record.status = 'pause';
+    localStorage.setItem(attendanceKey, JSON.stringify(record));
+    
+    // Update global attendance
+    let allAttendance = JSON.parse(localStorage.getItem('allAttendance') || '[]');
+    const index = allAttendance.findIndex(a => 
+        a.username === username && a.date === today
+    );
+    if (index !== -1) {
+        allAttendance[index] = record;
+        localStorage.setItem('allAttendance', JSON.stringify(allAttendance));
+    }
+    
+    // Update status badge
+    updateStatusBadge('pause');
+    
+    alert('⏸️ Break started - Status changed to Pause');
 }
 
 function openRequestForm() {
