@@ -684,25 +684,20 @@ function logout() {
 
 // Mobile Menu Toggle
 function toggleMobileMenu() {
-    const sidebar = document.querySelector('.sidebar');
-    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.getElementById('dashboardSidebar');
+    const hamburger = document.getElementById('hamburgerMenu');
+    const overlay = document.getElementById('mobileOverlay');
     const body = document.body;
     
-    sidebar.classList.toggle('mobile-open');
-    mobileBtn.classList.toggle('active');
+    if (!sidebar || !hamburger || !overlay) return;
     
-    // Create or toggle overlay
-    let overlay = document.querySelector('.mobile-overlay');
-    if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.className = 'mobile-overlay';
-        overlay.onclick = toggleMobileMenu;
-        document.body.appendChild(overlay);
-    }
+    // Toggle classes
+    sidebar.classList.toggle('mobile-active');
+    hamburger.classList.toggle('active');
     overlay.classList.toggle('active');
     
     // Prevent body scroll when menu is open
-    if (sidebar.classList.contains('mobile-open')) {
+    if (sidebar.classList.contains('mobile-active')) {
         body.style.overflow = 'hidden';
     } else {
         body.style.overflow = '';
@@ -713,11 +708,10 @@ function toggleMobileMenu() {
 document.addEventListener('DOMContentLoaded', function() {
     const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach(item => {
-        const originalClick = item.onclick;
         item.addEventListener('click', function() {
             if (window.innerWidth <= 768) {
-                const sidebar = document.querySelector('.sidebar');
-                if (sidebar.classList.contains('mobile-open')) {
+                const sidebar = document.getElementById('dashboardSidebar');
+                if (sidebar && sidebar.classList.contains('mobile-active')) {
                     toggleMobileMenu();
                 }
             }

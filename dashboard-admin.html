@@ -34,15 +34,18 @@
     </div>
     
     <div class="dashboard-container">
-        <!-- Mobile Menu Toggle -->
-        <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+        <!-- Mobile Overlay -->
+        <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+        
+        <!-- Mobile Hamburger Menu -->
+        <button class="hamburger-menu" id="hamburgerMenu" onclick="toggleMobileMenu()">
             <span></span>
             <span></span>
             <span></span>
         </button>
         
         <!-- Sidebar -->
-        <aside class="sidebar admin">
+        <aside class="sidebar admin" id="dashboardSidebar">
             <div class="sidebar-header">
                 <a href="index.html">
                     <img src="logo.png" alt="OHR BUILD" style="width: 90%; max-width: 400px; margin-bottom: 10px; cursor: pointer;">
