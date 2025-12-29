@@ -574,3 +574,15 @@ function addBreak() {
 function openRequestForm() {
     alert('📝 New request form (in development)');
 }
+
+function openGoogleMaps() {
+    // Address of current site: Constructorilor St. 45, Chișinău, Moldova
+    const address = 'Constructorilor St. 45, Chișinău, Moldova';
+    const encodedAddress = encodeURIComponent(address);
+    
+    // Google Maps URL with the address
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+    
+    // Open in new tab
+    window.open(googleMapsUrl, '_blank');
+}
