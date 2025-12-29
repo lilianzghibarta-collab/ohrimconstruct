@@ -64,17 +64,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #eaa350 0%, #24150c 100%);
+    background: #000000;
     padding: 20px;
 }
 
 .login-box {
-    background: white;
+    background: rgba(20, 20, 20, 0.95);
+    border: 2px solid #eaa350;
     border-radius: 15px;
     padding: 40px;
     max-width: 450px;
     width: 100%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 60px rgba(234, 163, 80, 0.3);
 }
 
 .logo-section {
@@ -89,7 +90,7 @@
 }
 
 .logo-section p {
-    color: #666;
+    color: #fcd787;
     font-size: 0.9em;
 }
 
@@ -107,24 +108,31 @@
 
 .form-group label {
     font-weight: 600;
-    color: #333;
+    color: #eaa350;
     font-size: 0.95em;
 }
 
 .form-group input,
 .form-group select {
     padding: 12px 15px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid #eaa350;
+    background: #1a1a1a;
+    color: #ffffff;
     border-radius: 8px;
     font-size: 1em;
     transition: all 0.3s;
 }
 
+.form-group input::placeholder {
+    color: #888;
+}
+
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #eaa350;
-    box-shadow: 0 0 0 3px rgba(234, 163, 80, 0.1);
+    border-color: #fcd787;
+    background: #2a2a2a;
+    box-shadow: 0 0 0 3px rgba(234, 163, 80, 0.2);
 }
 
 .btn-login {
@@ -146,32 +154,48 @@
 }
 
 .error-message {
-    background: #fee;
-    color: #c33;
+    background: rgba(255, 50, 50, 0.2);
+    color: #ff6b6b;
     padding: 12px;
     border-radius: 8px;
     text-align: center;
     margin-top: 10px;
-    border: 1px solid #fcc;
+    border: 1px solid #ff6b6b;
 }
 
 .demo-credentials {
     margin-top: 25px;
     padding: 15px;
-    background: #fdeeb0;
+    background: rgba(234, 163, 80, 0.1);
     border-radius: 8px;
     border-left: 4px solid #eaa350;
 }
 
 .demo-credentials h4 {
     margin-bottom: 10px;
-    color: #5c4938;
+    color: #eaa350;
 }
 
 .demo-credentials p {
     margin: 5px 0;
     font-size: 0.9em;
-    color: #5c4938;
+    color: #fcd787;
+}
+
+.demo-credentials strong {
+    color: #eaa350;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #fcd787;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #eaa350;
 }
 
 .back-link {
