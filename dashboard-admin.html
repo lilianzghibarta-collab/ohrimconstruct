@@ -454,45 +454,45 @@
                 
                 <div class="reports-grid">
                     <div class="report-card" onclick="generateReport('attendance')">
-                        <div class="report-icon">📊</div>
+                        <div class="report-icon">ATTENDANCE</div>
                         <h4>Monthly Attendance Report</h4>
                         <p>Presence and hours worked per worker</p>
-                        <button class="btn-primary" onclick="event.stopPropagation(); generateReport('attendance');">📥 Generate</button>
+                        <button class="btn-primary" onclick="event.stopPropagation(); generateReport('attendance');">Generate</button>
                     </div>
                     
                     <div class="report-card" onclick="generateReport('sites')">
-                        <div class="report-icon">🏗️</div>
+                        <div class="report-icon">SITES</div>
                         <h4>Site Progress Report</h4>
                         <p>Status and completion stages of projects</p>
-                        <button class="btn-primary" onclick="event.stopPropagation(); generateReport('sites');">📥 Generate</button>
+                        <button class="btn-primary" onclick="event.stopPropagation(); generateReport('sites');">Generate</button>
                     </div>
                     
                     <div class="report-card" onclick="generateReport('payroll')">
-                        <div class="report-icon">💰</div>
+                        <div class="report-icon">PAYROLL</div>
                         <h4>Financial Report</h4>
                         <p>Salaries, bonuses and expenses</p>
-                        <button class="btn-primary" onclick="event.stopPropagation(); generateReport('payroll');">📥 Generate</button>
+                        <button class="btn-primary" onclick="event.stopPropagation(); generateReport('payroll');">Generate</button>
                     </div>
                     
                     <div class="report-card" onclick="generateReport('equipment')">
-                        <div class="report-icon">🔧</div>
+                        <div class="report-icon">EQUIPMENT</div>
                         <h4>Equipment Report</h4>
                         <p>Inventory and equipment status</p>
-                        <button class="btn-primary" onclick="event.stopPropagation(); generateReport('equipment');">📥 Generate</button>
+                        <button class="btn-primary" onclick="event.stopPropagation(); generateReport('equipment');">Generate</button>
                     </div>
                     
                     <div class="report-card" onclick="generateReport('productivity')">
-                        <div class="report-icon">✅</div>
+                        <div class="report-icon">PRODUCTIVITY</div>
                         <h4>Productivity Report</h4>
                         <p>Completed tasks and performance</p>
-                        <button class="btn-primary" onclick="event.stopPropagation(); generateReport('productivity');">📥 Generate</button>
+                        <button class="btn-primary" onclick="event.stopPropagation(); generateReport('productivity');">Generate</button>
                     </div>
                     
                     <div class="report-card" onclick="generateReport('requests')">
-                        <div class="report-icon">📝</div>
+                        <div class="report-icon">REQUESTS</div>
                         <h4>Employee Requests Report</h4>
                         <p>Leaves, advances and other requests</p>
-                        <button class="btn-primary" onclick="event.stopPropagation(); generateReport('requests');">📥 Generate</button>
+                        <button class="btn-primary" onclick="event.stopPropagation(); generateReport('requests');">Generate</button>
                     </div>
                 </div>
                 
@@ -502,9 +502,9 @@
                         <div class="report-header">
                             <h3 id="reportTitle"></h3>
                             <div class="report-actions">
-                                <button onclick="downloadReport()" class="btn-primary">💾 Download PDF</button>
-                                <button onclick="printReport()" class="btn-secondary">🖨️ Print</button>
-                                <button onclick="closeReport()" class="btn-secondary">✖️ Close</button>
+                                <button onclick="downloadReport()" class="btn-primary">Download PDF</button>
+                                <button onclick="printReport()" class="btn-secondary">Print</button>
+                                <button onclick="closeReport()" class="btn-secondary">Close</button>
                             </div>
                         </div>
                         <div id="reportContent" class="report-content"></div>

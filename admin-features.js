@@ -941,27 +941,27 @@ function generateReport(reportType) {
     
     switch(reportType) {
         case 'attendance':
-            reportTitle.textContent = '📊 Monthly Attendance Report';
+            reportTitle.textContent = 'Monthly Attendance Report';
             content = generateAttendanceReport();
             break;
         case 'sites':
-            reportTitle.textContent = '🏗️ Site Progress Report';
+            reportTitle.textContent = 'Site Progress Report';
             content = generateSitesReport();
             break;
         case 'payroll':
-            reportTitle.textContent = '💰 Financial Report';
+            reportTitle.textContent = 'Financial Report';
             content = generatePayrollReport();
             break;
         case 'equipment':
-            reportTitle.textContent = '🔧 Equipment Report';
+            reportTitle.textContent = 'Equipment Report';
             content = generateEquipmentReport();
             break;
         case 'productivity':
-            reportTitle.textContent = '✅ Productivity Report';
+            reportTitle.textContent = 'Productivity Report';
             content = generateProductivityReport();
             break;
         case 'requests':
-            reportTitle.textContent = '📝 Employee Requests Report';
+            reportTitle.textContent = 'Employee Requests Report';
             content = generateRequestsReport();
             break;
     }
@@ -1001,6 +1001,10 @@ function generateAttendanceReport() {
     });
     
     return `
+        <div style="text-align: center; margin-bottom: 30px;">
+            <img src="logo.png" alt="OHR BUILD" style="max-width: 200px; margin-bottom: 15px;">
+            <h2 style="color: #2a2a2a; margin: 10px 0;">OHR BUILD</h2>
+        </div>
         <h3>Current Month Attendance</h3>
         <table class="data-table">
             <thead>
@@ -1022,7 +1026,7 @@ function generateAttendanceReport() {
                             <td>${stats.days}</td>
                             <td>${stats.totalHours.toFixed(1)}h</td>
                             <td>${avgHours}h</td>
-                            <td><span class="status-badge active">✅ Active</span></td>
+                            <td><span class="status-badge active">Active</span></td>
                         </tr>
                     `;
                 }).join('') || '<tr><td colspan="5">No data for current month</td></tr>'}
@@ -1031,15 +1035,19 @@ function generateAttendanceReport() {
         
         <div class="report-summary">
             <h4>Summary</h4>
-            <p>📊 Total days worked: ${Object.values(workerStats).reduce((sum, s) => sum + s.days, 0)}</p>
-            <p>⏰ Total hours worked: ${Object.values(workerStats).reduce((sum, s) => sum + s.totalHours, 0).toFixed(1)}h</p>
-            <p>👷 Active workers: ${Object.keys(workerStats).length}</p>
+            <p>Total days worked: ${Object.values(workerStats).reduce((sum, s) => sum + s.days, 0)}</p>
+            <p>Total hours worked: ${Object.values(workerStats).reduce((sum, s) => sum + s.totalHours, 0).toFixed(1)}h</p>
+            <p>Active workers: ${Object.keys(workerStats).length}</p>
         </div>
     `;
 }
 
 function generateSitesReport() {
     return `
+        <div style="text-align: center; margin-bottom: 30px;">
+            <img src="logo.png" alt="OHR BUILD" style="max-width: 200px; margin-bottom: 15px;">
+            <h2 style="color: #2a2a2a; margin: 10px 0;">OHR BUILD</h2>
+        </div>
         <h3>Site Progress Overview</h3>
         <table class="data-table">
             <thead>
@@ -1061,7 +1069,7 @@ function generateSitesReport() {
                         </div>
                     </td>
                     <td>12</td>
-                    <td><span class="status-badge active">🟢 In Progress</span></td>
+                    <td><span class="status-badge active">In Progress</span></td>
                 </tr>
                 <tr>
                     <td>Individual House Durlești</td>
@@ -1072,7 +1080,7 @@ function generateSitesReport() {
                         </div>
                     </td>
                     <td>6</td>
-                    <td><span class="status-badge active">🟢 In Progress</span></td>
+                    <td><span class="status-badge active">In Progress</span></td>
                 </tr>
                 <tr>
                     <td>Complex B Renovation</td>
@@ -1083,16 +1091,16 @@ function generateSitesReport() {
                         </div>
                     </td>
                     <td>8</td>
-                    <td><span class="status-badge warning">🟡 Completion</span></td>
+                    <td><span class="status-badge warning">Completion</span></td>
                 </tr>
             </tbody>
         </table>
         
         <div class="report-summary">
             <h4>Summary</h4>
-            <p>🏗️ Total sites: 5 (3 shown)</p>
-            <p>👷 Total workers: 24</p>
-            <p>📊 Average progress: 70%</p>
+            <p>Total sites: 5 (3 shown)</p>
+            <p>Total workers: 24</p>
+            <p>Average progress: 70%</p>
         </div>
     `;
 }
@@ -1127,6 +1135,10 @@ function generatePayrollReport() {
     const totalSalaries = payroll.reduce((sum, p) => sum + parseFloat(p.salary), 0);
     
     return `
+        <div style="text-align: center; margin-bottom: 30px;">
+            <img src="logo.png" alt="OHR BUILD" style="max-width: 200px; margin-bottom: 15px;">
+            <h2 style="color: #2a2a2a; margin: 10px 0;">OHR BUILD</h2>
+        </div>
         <h3>Current Month Payroll Report</h3>
         <table class="data-table">
             <thead>
@@ -1157,15 +1169,19 @@ function generatePayrollReport() {
         
         <div class="report-summary">
             <h4>Financial Summary</h4>
-            <p>💰 Total salary expenses: ${totalSalaries.toFixed(2)} EUR</p>
-            <p>👥 Number of employees: ${payroll.length}</p>
-            <p>📊 Average salary: ${(totalSalaries / payroll.length || 0).toFixed(2)} EUR</p>
+            <p>Total salary expenses: ${totalSalaries.toFixed(2)} EUR</p>
+            <p>Number of employees: ${payroll.length}</p>
+            <p>Average salary: ${(totalSalaries / payroll.length || 0).toFixed(2)} EUR</p>
         </div>
     `;
 }
 
 function generateEquipmentReport() {
     return `
+        <div style="text-align: center; margin-bottom: 30px;">
+            <img src="logo.png" alt="OHR BUILD" style="max-width: 200px; margin-bottom: 15px;">
+            <h2 style="color: #2a2a2a; margin: 10px 0;">OHR BUILD</h2>
+        </div>
         <h3>Equipment Inventory</h3>
         <table class="data-table">
             <thead>
@@ -1182,28 +1198,28 @@ function generateEquipmentReport() {
                     <td>EQ-2301</td>
                     <td>Professional Concrete Mixer</td>
                     <td>3</td>
-                    <td><span class="status-badge warning">⚠️ Maintenance</span></td>
+                    <td><span class="status-badge warning">Maintenance</span></td>
                     <td>15 Jan 2026</td>
                 </tr>
                 <tr>
                     <td>EQ-2302</td>
                     <td>Mobile Crane</td>
                     <td>2</td>
-                    <td><span class="status-badge active">✅ Good</span></td>
+                    <td><span class="status-badge active">Good</span></td>
                     <td>01 Feb 2026</td>
                 </tr>
                 <tr>
                     <td>EQ-2303</td>
                     <td>Power Tools Set</td>
                     <td>15</td>
-                    <td><span class="status-badge active">✅ Good</span></td>
+                    <td><span class="status-badge active">Good</span></td>
                     <td>20 Jan 2026</td>
                 </tr>
                 <tr>
                     <td>EQ-2304</td>
                     <td>Metal Scaffolding</td>
                     <td>50</td>
-                    <td><span class="status-badge active">✅ Good</span></td>
+                    <td><span class="status-badge active">Good</span></td>
                     <td>10 Feb 2026</td>
                 </tr>
             </tbody>
@@ -1211,15 +1227,19 @@ function generateEquipmentReport() {
         
         <div class="report-summary">
             <h4>Summary</h4>
-            <p>🔧 Total equipment: 70 items</p>
-            <p>✅ In good condition: 67</p>
-            <p>⚠️ Requires maintenance: 3</p>
+            <p>Total equipment: 70 items</p>
+            <p>In good condition: 67</p>
+            <p>Requires maintenance: 3</p>
         </div>
     `;
 }
 
 function generateProductivityReport() {
     return `
+        <div style="text-align: center; margin-bottom: 30px;">
+            <img src="logo.png" alt="OHR BUILD" style="max-width: 200px; margin-bottom: 15px;">
+            <h2 style="color: #2a2a2a; margin: 10px 0;">OHR BUILD</h2>
+        </div>
         <h3>Productivity & Performance</h3>
         <table class="data-table">
             <thead>
@@ -1241,7 +1261,7 @@ function generateProductivityReport() {
                             <div class="progress-fill" style="width: 84%">84%</div>
                         </div>
                     </td>
-                    <td>⭐⭐⭐⭐⭐</td>
+                    <td>5/5</td>
                 </tr>
                 <tr>
                     <td>Team B - Durlești</td>
@@ -1252,7 +1272,7 @@ function generateProductivityReport() {
                             <div class="progress-fill" style="width: 75%">75%</div>
                         </div>
                     </td>
-                    <td>⭐⭐⭐⭐</td>
+                    <td>4/5</td>
                 </tr>
                 <tr>
                     <td>Team C - Renovation</td>
@@ -1263,16 +1283,16 @@ function generateProductivityReport() {
                             <div class="progress-fill" style="width: 91%">91%</div>
                         </div>
                     </td>
-                    <td>⭐⭐⭐⭐⭐</td>
+                    <td>5/5</td>
                 </tr>
             </tbody>
         </table>
         
         <div class="report-summary">
             <h4>Summary</h4>
-            <p>✅ Total completed tasks: 88</p>
-            <p>📋 Total tasks: 105</p>
-            <p>📊 Completion rate: 84%</p>
+            <p>Total completed tasks: 88</p>
+            <p>Total tasks: 105</p>
+            <p>Completion rate: 84%</p>
         </div>
     `;
 }
@@ -1285,6 +1305,10 @@ function generateRequestsReport() {
     const pending = requests.filter(r => r.status === 'pending').length;
     
     return `
+        <div style="text-align: center; margin-bottom: 30px;">
+            <img src="logo.png" alt="OHR BUILD" style="max-width: 200px; margin-bottom: 15px;">
+            <h2 style="color: #2a2a2a; margin: 10px 0;">OHR BUILD</h2>
+        </div>
         <h3>Employee Requests</h3>
         <table class="data-table">
             <thead>
@@ -1302,7 +1326,7 @@ function generateRequestsReport() {
                         <td>${req.fullName}</td>
                         <td>${getRequestTypeLabel(req.type)}</td>
                         <td>${new Date(req.startDate).toLocaleDateString()} - ${new Date(req.endDate).toLocaleDateString()}</td>
-                        <td><span class="status-badge ${req.status}">${req.status === 'approved' ? '✅ Approved' : req.status === 'rejected' ? '❌ Rejected' : '⏳ Pending'}</span></td>
+                        <td><span class="status-badge ${req.status}">${req.status === 'approved' ? 'Approved' : req.status === 'rejected' ? 'Rejected' : 'Pending'}</span></td>
                         <td>${new Date(req.submittedDate).toLocaleDateString()}</td>
                     </tr>
                 `).join('') || '<tr><td colspan="5">No requests available</td></tr>'}
@@ -1311,10 +1335,10 @@ function generateRequestsReport() {
         
         <div class="report-summary">
             <h4>Summary</h4>
-            <p>✅ Approved requests: ${approved}</p>
-            <p>❌ Rejected requests: ${rejected}</p>
-            <p>⏳ Pending requests: ${pending}</p>
-            <p>📊 Total requests: ${requests.length}</p>
+            <p>Approved requests: ${approved}</p>
+            <p>Rejected requests: ${rejected}</p>
+            <p>Pending requests: ${pending}</p>
+            <p>Total requests: ${requests.length}</p>
         </div>
     `;
 }
@@ -1356,7 +1380,7 @@ function printReport() {
 }
 
 function downloadReport() {
-    showNotification('📥 PDF download feature will be implemented with jsPDF library. For now, please use the Print button.', 'info');
+    showNotification('PDF download feature will be implemented with jsPDF library. For now, please use the Print button.', 'info');
 }
 
 // ============================================
